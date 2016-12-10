@@ -1,0 +1,15 @@
+---
+references:
+- id: androiddesign
+  author:
+  - family: Google
+  type: webpage
+  title: Android Design Principles
+  URL: https://developer.android.com/design/get-started/principles.html
+  issued: 2016
+  accessed:
+    date-parts:
+    - - 1953
+      - 4
+      - 25
+...
