@@ -1,15 +1,28 @@
 ---
 references:
 - id: androiddesign
+  title: Android Design Principles
   author:
   - family: Google
   type: webpage
-  title: Android Design Principles
   URL: https://developer.android.com/design/get-started/principles.html
   issued: 2016
   accessed:
     date-parts:
-    - - 1953
-      - 4
-      - 25
+    - - 2016
+      - 12
+      - 10
+- id: henkes
+  title: The food industry in 2016 - the top foodservice trends in the UK and the US
+  author:
+  - family: Henkes
+    given: David
+  type: webpage
+  URL: http://www.just-food.com/management-briefing/the-food-industry-in-2016-the-top-foodservice-trends-in-the-uk-and-the-us_id131892.aspx
+  issued: 2016
+  accessed:
+    date-parts:
+    - - 2016
+      - 12
+      - 10
 ...
