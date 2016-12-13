@@ -3,7 +3,7 @@ references:
 - id: androiddesign
   title: Android Design Principles
   author:
-  - family: Google
+  - literal: Google?
   type: webpage
   URL: https://developer.android.com/design/get-started/principles.html
   issued: 2016
@@ -25,4 +25,91 @@ references:
     - - 2016
       - 12
       - 10
+- id: defra2016
+  title: Food Statistics Pocketbook 2016
+  author:
+  - literal: DEFRA
+  type: webpage
+  URL: https://www.gov.uk/government/statistics/food-statistics-pocketbook-2016
+  issued: 2016
+  accessed:
+    date-parts:
+    - - 2016
+      - 12
+      - 10
+- id: ft2016
+  title: Uber to challenge Deliveroo's hold on London's food delivery market
+  author:
+  - literal: FT
+  type: webpage
+  URL: https://www.ft.com/content/9f8d147e-379e-11e6-a780-b48ed7b6126f
+  issued: 2016
+  accessed:
+    date-parts:
+    - - 2016
+      - 12
+      - 10
+- id: bower1995
+  title: 'Disruptive Technologies: Catching the Wave'
+  author:
+  - family: Bower
+    given: Joseph L.
+  - family: Christensen
+    given: Clayton M.
+  type: article-journal
+  container-title: Harvard Business Review
+  volume: 73
+  issue: 1
+  page: 43-53
+  issued: 1995
+- id: meeker2016
+  title: Internet Trends Report 2016
+  author:
+  - family: Meeker
+    given: Mary
+  type: webpage
+  URL: http://www.kpcb.com/blog/2016-internet-trends-report
+  issued: 2016
+  accessed:
+    date-parts:
+    - - 2016
+      - 12
+      - 10
+- id: robertson2012
+  title: 'Mastering the Requirements Process: Getting Requirements Right'
+  author:
+  - family: Robertson
+    given: Suzanne
+  - family: Robertson
+    given: James
+  type: book
+  edition: 3rd edition
+  publisher: Addison-Wesley
+  publisher-place: Upper Saddle River, NJ
+  issued: 2012
+- id: meeker2016
+  title: Internet Trends Report 2016
+  author:
+  - family: Meeker
+    given: Mary
+  type: webpage
+  URL: http://www.kpcb.com/blog/2016-internet-trends-report
+  issued: 2016
+  accessed:
+    date-parts:
+    - - 2016
+      - 12
+      - 10
+- id: arlow
+  title: UML 2 and the Unified Process
+  author:
+  - family: Arlow
+    given: Jim
+  - family: Neustadt
+    given: Ila
+  type: book
+  issued: 2005
+  edition: 2nd edition
+  publisher: Addison-Wesley
+  publisher-place: Upper Saddle River, NJ
 ...

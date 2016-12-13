@@ -68,6 +68,9 @@
       <if type="bill book graphic legal_case legislation motion_picture report song webpage" match="any">
         <text variable="title" font-style="italic"/>
       </if>
+      <if type="article-journal" match="any">
+        <text variable="title" quotes="true"/>
+      </if>
       <else>
         <text variable="title" form="long" quotes="false"/>
       </else>
@@ -159,10 +162,10 @@
     <layout suffix=".">
       <group delimiter=" ">
         <text macro="author"/>
-        <text macro="year-date" prefix="(" suffix=")."/>
-        <text macro="title" suffix="."/>
+        <text macro="year-date" prefix="(" suffix=")"/>
+        <text macro="title" suffix=","/>
         <text macro="container-prefix"/>
-        <group delimiter=". ">
+        <group delimiter=", ">
           <text macro="editor"/>
           <text variable="container-title" font-style="italic"/>
           <text variable="collection-title" form="long" font-style="italic"/>
