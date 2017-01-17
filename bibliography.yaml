@@ -112,4 +112,108 @@ references:
   edition: 2nd edition
   publisher: Addison-Wesley
   publisher-place: Upper Saddle River, NJ
+- id: farrell
+  title: The Evolution of the Quick Service Restaurant
+  author:
+  - family: Farrell
+    given: James P.
+  type: webpage
+  URL: http://jpfarrell.blogspot.co.uk/2007/11/evolution-of-quick-service-restaurant.html
+  issued: 2008
+  accessed:
+    date-parts:
+    - - 2016
+      - 12
+      - 17
+- id: wrap
+  title: 'Quick Service Restaurants: Taking Action on Waste'
+  author:
+  - literal: WRAP
+  type: webpage
+  URL: http://www.wrap.org.uk/sites/files/wrap/QSR.pdf
+  issued: 2013
+  accessed:
+    date-parts:
+    - - 2016
+      - 12
+      - 17
+- id: telegraph
+  title: Japanese food chain Itsu boss rolls up 50pc pay rise after record sales
+  author:
+  - literal: The Telegraph
+  type: webpage
+  URL: http://www.telegraph.co.uk/business/2016/08/13/japanese-food-chain-itsu-boss-rolls-up-50pc-pay-rise-after-recor/
+  issued: 2016
+  accessed:
+    date-parts:
+    - - 2016
+      - 12
+      - 17
+- id: itsu
+  title: itsu - about us - the sale
+  author:
+  - literal: itsu
+  type: webpage
+  URL: https://www.itsu.com/about/sale/
+  issued: 2014
+  accessed:
+    date-parts:
+    - - 2016
+      - 12
+      - 17
+- id: bradner
+  title: 'RFC 2119: Key words for use in RFCs to Indicate Requirement Levels'
+  author:
+  - family: Bradner
+    given: S.
+  type: webpage
+  URL: http://www.rfc-editor.org/info/rfc2119
+  issued: 1997
+  accessed:
+    date-parts:
+    - - 2016
+      - 12
+      - 18
+- id: wimberley
+  title: UX Design Tips for Your App, Part 1
+  author:
+  - family: Wimberley
+    given: Clark
+  type: webpage
+  URL: http://blog.invisionapp.com/ux-design-tips-for-your-app/
+  issued: 2016
+  accessed:
+    date-parts:
+    - - 2016
+      - 12
+      - 18
+- id: punchtab
+  title: 'Mobile Tracking: Are Consumers Ready?'
+  author:
+  - literal: PunchTab
+  type: webpage
+  URL: http://www.thelbma.com/files/556-wp_mobile_tracking_REV5.pdf
+  issued: 2014
+  accessed:
+    date-parts:
+    - - 2016
+      - 12
+      - 18
+- id: harley
+  title: Icon Usability
+  author:
+  - family: Harley
+    given: Aurora
+  type: webpage
+  URL: https://www.nngroup.com/articles/icon-usability/
+  issued:
+    date-parts:
+    - - 2014
+      - 7
+      - 27
+  accessed:
+    date-parts:
+    - - 2016
+      - 12
+      - 18
 ...

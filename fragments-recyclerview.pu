@@ -1,0 +1,38 @@
+@startuml
+
+skinparam monochrome true
+
+hide circle
+hide empty methods
+hide empty attributes
+
+set namespaceSeparator none
+
+class OutletListActivity
+class OutletDetailsActivity
+class OutletListFragment
+class OutletDetailsFragment
+
+class OutletAdapter
+class OutletAdapter.OutletViewHolder
+
+class RecyclerView.Adapter
+class RecyclerView.ViewHolder
+
+'AppCompatActivity <|-- OutletListActivity
+'AppCompatActivity <|-- OutletDetailsActivity
+
+'Fragment <|-- OutletListFragment
+'Fragment <|-- OutletDetailsFragment
+
+OutletListActivity --> OutletDetailsFragment
+OutletListActivity --> OutletListFragment
+OutletDetailsActivity --> OutletDetailsFragment
+
+OutletDetailsFragment --> OutletAdapter
+OutletAdapter *-- OutletAdapter.OutletViewHolder
+
+RecyclerView.Adapter <|-- OutletAdapter
+RecyclerView.ViewHolder <|-- OutletAdapter.OutletViewHolder
+
+@enduml
