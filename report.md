@@ -75,26 +75,77 @@ Table:  Summary of functional requirements
 
 These requirements are explained and justified in detail in the following sections.
 
-#### FR01: Show offers based on the user's physical location
+#### FR01: List offers based on proximity to the user's location, if known
 
-As GPS receivers have become a standard feature on smartphones, users now expect mobile apps containing location-specific information to give them the option of sharing their position automatically via the phone's geolocation facility and thereby avoid having to enter it manually. This is an example of 'adaptive user experience' and can be an important way of saving the user time and giving them a seamless experience [@wimberley].
+As GPS receivers have become a standard feature on smartphones, users now expect mobile apps containing location-specific information to give them the option of sharing their position automatically via the phone's geolocation facility. Avoiding having to manually select a location is an example of 'adaptive user experience' and can be an important way of saving the user time and giving them a seamless experience [@wimberley].
 
-However, not all smartphone owners are comfortable with using geolocation features because of doubts over how information about their location might be used by app developers. A recent survey [@punchtab] showed that 50% of mobile users were reluctant to share their location due to privacy concerns. However, the same survey showed that the biggest reason given (88%) for users to allow location tracking was the availability of "coupons or special offers". This suggests that users will be prepared to allow _halfpricesushi_ to access their location because it will provide them with such offers. However, a fallback option ([FR04](#fr04-allow-user-to-specify-location-manually)) should be provided to support those users who decline to enable gelocation.
+It should be noted that not all smartphone owners are comfortable with using geolocation features, sometimes because of doubts over how information about their location might be used by app developers. A recent survey [@punchtab] showed that 50% of mobile users were reluctant to share their location due to privacy concerns. However, the same survey showed that the biggest reason given (88%) for users to allow location tracking was the availability of "coupons or special offers". This suggests that users will be prepared to allow _halfpricesushi_ to access their location because it will provide them with such offers. However the app should be designed so that it is still usable even without access to location services.
 
+#### FR02: List offers based on start and finish time
 
-#### FR02: Show offers based on remaining duration
+Since one of the unique selling points of the app is the ability to provide time-limited special offers, it makes sense that users should be able to see which offers are starting or finishing near them soon. The user interface should summarise the start and finish time (and optionally, the remaining duration) of each offer in a way that is easy to understand, along with its location. This will allow the user to make a decision about which offer to use based on both time and location factors.
 
-#### FR03: Display detailed information about each offer and location
+#### FR03: Allow users to customise the sort order of the list view
 
-#### FR04: Allow user to specify location manually
+Users may wish to sort the list of offers either by distance or by time remaining. This feature should be provided via a button in the app Action Bar. However, the button should only be shown in when the list view is visible, not in the map view, thereby following the Android Design Principle [@androidesign] of _only show what I need when I need it_.
+
+#### FR04: Display a detailed view of each offer and location
+
+Once the user has identified an offer that they are interested in, they should be able to tap or click on it to see a more detailed view. The detailed view should provide all information that the app holds about the offer, along with any applicable time restritions (such as opening hours). The detailed view should also give an indication of the location where the offer can be redeemed, such as through a simplified (non-interactive) small map.
+
+#### FR05: Provide map-based view of all offers in the surrounding area
+
+Instead of viewing a list of offers based on proximity, users may prefer to see a graphical map showing their position in relation to the offers around them. This is because some users express a preference for (ref?) graphical visualisations over textual list-type views. Providing a map-based interface also adheres to the Android Design Principle _real objects are more fun than buttons and menus_. [@androiddesign]. However, care must be taken not to 'overload' view with an excessive number of markers which may obscure map details and prevent users from orienting themselves in the surrounding area.
+
+#### FR06: Allow user to see their location in the map view
+
+Users are accustomed to map views offering a 'My Location'-type feature which indicates their current position in relation to places of interest around them, often using a blue dot. This type of feature should also be incorporated into the map view for consistency with other apps such as Google Maps itself.
+
+#### FR07: Indicate which offers currently avaible using graphics
+
+Following the Android Design Principle that _pictures are faster than words_ [@androiddesign], the user interface should use graphics and other visual effects (such as highlight colours) to identify the status of each offer. An example of this would be to use a different icon to represent an offer that is currently available on list and map views, rather than a simple piece of text. However, if icons are used, care should be taken to ensure that they are easily understood by the majority of users (ref Hamburger icon article) and do not create confusion.
+
+#### FR08: Initialise database of available offers using external API
+
+The list of offers available using the app may change periodically as new partners decide to participate or existing partners decide to change the terms of their offers (for example start or end times). To ensure that the app always offers the most up-to-date list of available offers when it is installed, the offer database should be obtained by making a call to a central REST API when the app is run for the first time.
+
+If problems occur when initialising the database from the web API, the app should give the user the opportunity to retry the operation, avoiding unneeded technical detail. This adheres to the Android Design Principle of _it's not my fault_ [@androiddesign].
+
+#### FR09: Update offer database automatically using API without requiring app update
+
+Users should be able to take advantage of udpated offer information without having to upgrade or reinstall the app itself. The app should periodically check the API in order to update its local database of offers. However the update process, and in particular any network errors that occur, should not interfere with the normal operation of the app (again, as per _it's not my fault_).
+
+#### FR10: Support adding users' personal ratings for each offer
+
+The Android Design Principle _let me make it mine_ [@androiddesign] states that users like to add personal touches and 'optional customisations'. This principle is met by allowing users to assign a 'star rating' on the detailed offer view. The star rating they give each offer should be stored by the app and redisplayed on subequent uses of the detailed view, also following the principle of _never lose my stuff_.
+
+#### FR11: Upload anonymised user ratings to central database
+
+When a user has added a personal rating for an offer, as well as storing the rating internally the app should attempt to submit the rating to a central database (including the offer identifier, rating and date and time when the rating was set). At this stage no personally identifiable data (such as location) should be sent to the server to avoid infringing the user's privacy. A server using a REST API will be made available to receive ratings sent by the app.
+
+The rationale behind this requirement is to build up a central database of ratings that could be used to provide additional features in future based on which offers have the highest (or lowest) user rating. For example, a shop with a large selection of reduced items could be highlighed by the app for special consideration by the user.
+
+#### FR12: Use simple sound effects to respond to user actions
+
+Following the Android Design Principles [@androiddesign] _delight me in surprising ways_, the app should make judicious use of sound effects to respond to and reward user activity. An effect should be played both when a user opens the detailed view of an offer and when they as a personal rating for the offer. The goal is to encourage the user to interact with the app more and make their experience more enjoyable.
 
 ### Non-functional
 
 Non-functional requirements are other qualities that the product must have in order to be acceptable to the user [@robertson2012]. These may include such properties as security, capacity, performance and compliance to standards. They can also be described as constraints placed on the system [@arlow].
 
-#### NFR01: Respond to all user interactions within 100ms
+#### NFR01: Support up to 1000 offers at one time without impaired function
 
-#### NFR02: Support multiple languages
+The app should be able to handle a large database of offers to allow it to continue to be work effectively even many additional partners are signed up. The initial offer database is expeced to contain less than 100 offers, however the behaviour of the app with up to 1000 offers should not be noticeably impaired in any way.
+
+#### NFR02: Respond to all user interactions within 100ms
+
+#### NFR03: Internationalisation support
+
+#### NFR04: Accessibility
+
+?
+
+#### NFR05: Standards? Privacy etc?
 
 # Prototype
 
