@@ -60,6 +60,8 @@ For the purposes of setting requirements I will take a similar approach, omittin
 
 In a normal requirements gathering process we might perform interviews or workshops with stakeholders or use questionnaires to elicit information. For the purposes of this project, functional and non-functional requirements will be identified primarily based on the background and domain research described above, along with the applicable Android design principles [@androiddesign].
 
+These requirements describe only a minimum viable product (MVP), in other words an acceptable version of the app that could be released and used to learn more about customer needs through testing and other research. Future iterations of the development cycle may add additional requirements based on user feedback and new business requirements.
+
 ### Functional
 
 Functional requirements define things that the product must do in order to be useful to the person using it [@robertson2012]. For example, a weather application needs to be able to give information about the weather forecast for the next few days. Below is a table summarising the functional requirements that have been identified for this case study.
@@ -139,7 +141,9 @@ The app should be able to handle a large database of offers to allow it to conti
 
 #### NFR02: Respond to all user interactions within 100ms
 
-#### NFR03: Internationalisation support
+#### NFR03: Localisation support
+
+As the app may be launched in future in other countries, it is essential that it can be easily translated into other languages. For this reason all strings and graphical text used within the app should be stored using localised resources instead of being hard-coded. The default language may be assumed to be English. No special support for right-to-left text or layouts is required for the MVP app.
 
 #### NFR04: Accessibility
 
