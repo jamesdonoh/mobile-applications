@@ -157,9 +157,46 @@ As the app may be launched in future in other countries, it is essential that it
 
 ## Model View Controller
 
-Model View Controller (MVC) is a well-established pattern in application architecture for ensuring a separation of concerns between user interface and business logic and/or domain model.
+Model View Controller (MVC) is a well-established pattern in application architecture for creating a separation of concerns between user interface and business logic and/or domain model.
 
-According to Fowler [@fowler] the separation of presentation from model is of fundamental importance in software architecture. It allows code that describing both business logic and database or API access to be developed and tested separately, without any dependency on a user interface, and enables the possibility of reusing the same model code with different interfaces (such as a website and the command-line). It also allows for greater specialisation of skills within different areas.
+According to Fowler [@fowler] the separation of presentation from model is of fundamental importance in software architecture. It allows code that describes business logic and provdes access to data (for example via databases or APIs) to be developed and tested separately, independently of the user interface, and enables the possibility of reusing the same model code with different interfaces (such as a website and the command-line). It also allows for greater specialisation of development skills within different areas, and simplification of the development process.
+
+The MVC pattern originated in experiments in graphical interfaces conducted at Xerox PARC the late 1970s and was originally implemented for the Smalltalk language. As originally conceived, the model is an abstract representation of some type of knowledge, while the view or views are representations of that model that the user can interact with, while creating the impression they are seeing and manipulating the model directly [@reenskaug].
+
+The exact role of the controller has been interpreted differently by authors. Fowler says that the controller takes user input, manipulates the model and causes the view(s) to update [@fowler]. However, Reenskaug's proposal was that views handle their own user input, with the controller only responsible for coordinating views and handling level at the input of the whole application [@reenskaug]. It is worth noting that Fowler believes the precise separation between view and controller (V/C) is less important than the separation between model and presentaion (M/VC).
+
+As with other layered architectures, the potential benefits of MVC are that it helps to manage the complexity of a large application, as well as facilitating reuse and refactoring by reducing the amount of coupling between classes.
+
+## MVC and the Android platform
+
+The Android platform supports an MVC architecture but does not enforce the use of any one paradigm. Instead developers have to make conscious decisions to avoid mixing data/model and presentation concerns within the same layer. Apart from the provided `View` class hierarchy, Android does not use MVC terminology directly. However, one typical way of mapping MVC into Android is outlined by [@bignerd]:
+
+- model classes are custom Java classes (which do not normally inherit from Android platform classes). 
+- the view(s) layer are the Android `View` classes (usually instantiated through the layout file mechanism), which are able to draw themselves and handle user input
+- the 'controller' is collection of the `Activity`, `Fragment` and/or `Service` classes that contain all the application logic and manage the flow of data between the model and view layers
+
+According to [@fowler] the model in MVC should be essentially non-visual and not depend on any user interface components. In practical terms, this strongly suggests that the model classes in an Android app should not `import` any Java classes that correspond to user interface features, such as `View`s or `Fragment`s. Where model classes have unit tests, this also allows them to be run in isolation without any dependency on a specific version of the Android API.
+
+Another way that separation between model and presentation can be encouraged is to use a separate Java package for the model classes. Fields and methods that are only used within model classes can therefore be declared as package-private through the omission of any explicit access level modifier [@javaaccesscontrol]. This helps to restrict access to the model from other packages (such as those containing user interface classes) to its public interface, and supports the object-oriented design principle of encapsulation [@booch]. As a secondary benefit, it permits the model implementation (for example, the choice of persistence layer) to change without affecting the rest of the application.
+
+An essential feature of MVC on Android as described by [@bignerd] is that there must be no direct communication between model and view classes - the controller(s) always acts as an intermediary, updating views with changes to model objects and changing models as required in response to user input. This is effectively an application of the so-called Law of Demeter [@booch] which requires code units to only communicate with other directly-related code units. Model classes should know nothing about the widgets and other user interface components used to represent them.
+
+Fowler [@fowler] identifies one common problem for rich clients: the need to ensure consistency of data across multiple views. Any change to the model, whether caused by a user interacting with one presentation or by external events, needs to be reflected across all presentations. In the Android platform we can approach this problem by ensuring that `Fragment`s register event listeners for any changes to the model they use.
+
+## Use of MVC within _halfpricesushi_
+
+Reenskaug suggests that the MVC paradigm is beneficial when the user needs to see the same data in different contexts and/or different viewpoints [@reenskaug]. The _halfpricesushi_ app has exactly this requirement, showing users information about special offers using three different 'views':
+
+  - as an ordered textual list
+  - arranged as markers on a geographical map
+  - in a 'close up' view of an individual offer with additional details
+
+The model classes have been organised into a separate package, `io.github.jamesdonoh.halfpricesushi.model` to show the separation of model and presentation. Additionally, package-private access has been specified for members that should not be used outside the package (for example, the constructor for the `Outlet` class).
+
+    (add diagram showing activity acting as intermediary?)
+
+The `Activity` and `Fragment` classes used within the app act as controllers, with no direct interaction between model and view classes. Additionally, the use of a `RecyclerView` within `OutletListFragment` allows the underlying data source (a `List` of `Outlet` instances) to be abstracted away from the list view layer via a custom `RecyclerView.Adapter` subclass (note that this class is not a part of the `.model` package itself, although it manages objects from that package). The `RecylerView` does not interact directly with any `Outlet` objects directly but delegates this behaviour to the `Adapter` and `ViewHolder` abstractions.
+
 
 # Development
 

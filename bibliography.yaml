@@ -225,4 +225,66 @@ references:
   publisher: Addison-Wesley
   publisher-place: Upper Saddle River, NJ
   issued: 2002
+  page: 300-302
+- id: reenskaug
+  title: MVC - Xerox PARC 1978-79
+  author:
+  - family: Reenskaug
+    given: Trygve
+  type: webpage
+  URL: http://heim.ifi.uio.no/~trygver/themes/mvc/mvc-index.html
+  issued: 2012
+  accessed:
+    date-parts:
+    - - 2017
+      - 01
+      - 29
+- id: javaaccesscontrol
+  title: The Java™ Tutorials: Controlling Access to Members of a Class
+  author:
+    - literal: Oracle
+  type: webpage
+  URL: https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html
+  issued: 2017
+  accessed:
+    date-parts:
+    - - 2017
+      - 01
+      - 29
+- id: booch
+  title: Object Oriented Analysis and Design with Applications
+  author:
+  - family: Booch
+    given: Grady
+  - family: Maksimchuk
+    given: Robert A.
+  - family: Engle
+    given: Michael W.
+  - family: Young
+    given: Bobbi J.
+  - family: Conallen
+    given: Jim
+  - family: Houston
+    given: Kelli A.
+  type: book
+  publisher: Addison-Wesley
+  publisher-place: Upper Saddle River, NJ
+  issued: 2007
+  edition: 3rd edition
+- id: bignerd
+  title: Android Programming: The Big Nerd Ranch Guide
+  author:
+  - family: Phillips
+    given: Bill
+  - family: Stewart
+    given: Chris
+  - family: Hardy
+    given: Brian
+  - family: Marsicano
+    given: Kristin
+  type: book
+  publisher: Big Nerd Ranch
+  publisher-place: Atlanta, GA
+  issued: 2015
+  edition: 2nd edition
 ...
