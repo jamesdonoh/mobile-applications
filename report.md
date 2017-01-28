@@ -89,7 +89,7 @@ Since one of the unique selling points of the app is the ability to provide time
 
 #### FR03: Allow users to customise the sort order of the list view
 
-Users may wish to sort the list of offers either by distance or by time remaining. This feature should be provided via a button in the app Action Bar. However, the button should only be shown in when the list view is visible, not in the map view, thereby following the Android Design Principle [@androidesign] of _only show what I need when I need it_.
+Users may wish to sort the list of offers either by distance or by time remaining. This feature should be provided via a button in the app Action Bar. However, the button should only be shown in when the list view is visible, not in the map view, thereby following the Android Design Principle [@androiddesign] of _only show what I need when I need it_.
 
 #### FR04: Display a detailed view of each offer and location
 

@@ -240,7 +240,7 @@ references:
       - 01
       - 29
 - id: javaaccesscontrol
-  title: The Java™ Tutorials: Controlling Access to Members of a Class
+  title: 'The Java™ Tutorials: Controlling Access to Members of a Class'
   author:
     - literal: Oracle
   type: webpage
@@ -272,7 +272,7 @@ references:
   issued: 2007
   edition: 3rd edition
 - id: bignerd
-  title: Android Programming: The Big Nerd Ranch Guide
+  title: 'Android Programming: The Big Nerd Ranch Guide'
   author:
   - family: Phillips
     given: Bill
