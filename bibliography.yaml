@@ -216,4 +216,13 @@ references:
     - - 2016
       - 12
       - 18
+- id: fowler
+  title: Patterns of Enterprise Application Architecture
+  author:
+  - family: Fowler
+    given: Martin
+  type: book
+  publisher: Addison-Wesley
+  publisher-place: Upper Saddle River, NJ
+  issued: 2002
 ...

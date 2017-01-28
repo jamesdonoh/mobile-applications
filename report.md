@@ -155,6 +155,12 @@ As the app may be launched in future in other countries, it is essential that it
 
 # Architecture
 
+## Model View Controller
+
+Model View Controller (MVC) is a well-established pattern in application architecture for ensuring a separation of concerns between user interface and business logic and/or domain model.
+
+According to Fowler [@fowler] the separation of presentation from model is of fundamental importance in software architecture. It allows code that describing both business logic and database or API access to be developed and tested separately, without any dependency on a user interface, and enables the possibility of reusing the same model code with different interfaces (such as a website and the command-line). It also allows for greater specialisation of skills within different areas.
+
 # Development
 
 # Testing
