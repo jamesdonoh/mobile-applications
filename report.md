@@ -10,7 +10,7 @@ This is my report for the Mobile Applications MSc. There are a number of Android
 
 As the mobile application ('app') sector continues to grow (ref?), vendors are looking for new features and approaches that will help them stick out in a crowded marketplace. This case study will focus on one business sector, fast food, and identify some requirements for a new mobile application, with reference to business trends and existing applications.
 
-# Case study
+# Case study
 
 ## Background
 
@@ -40,7 +40,7 @@ The target app technology platform will be Android, which continues to enjoy mar
 
 ## Domain research
 
-### Just Eat
+### Just Eat
 
 The first screen that the user sees when running the Just Eat app prompts them to enter their postcode:
 
@@ -48,7 +48,7 @@ The first screen that the user sees when running the Just Eat app prompts them t
 
 As an alternative to entering a postcode manually, tapping the crosshair symbol to the right-hand side of the input box activates the device's geolocation feature to be used instead. This symbol is consistent with its use elsewhere on the Android platform, however research suggests that truly universal icons are rare and should therefore be accompanied by a text label to eliminate ambiguity [@harley].
 
-## Requirements
+## Requirements
 
 Before work can begin on designing the user interface for the app we need to explore how the system is going to work systematically. This process of requirements gathering should consider both _functional_ and _non-functional_ requirements. The division between these two classes of requirements will be discussed below.
 
@@ -62,7 +62,7 @@ In a normal requirements gathering process we might perform interviews or worksh
 
 These requirements describe only a minimum viable product (MVP), in other words an acceptable version of the app that could be released and used to learn more about customer needs through testing and other research. Future iterations of the development cycle may add additional requirements based on user feedback and new business requirements.
 
-### Functional
+### Functional
 
 Functional requirements define things that the product must do in order to be useful to the person using it [@robertson2012]. For example, a weather application needs to be able to give information about the weather forecast for the next few days. Below is a table summarising the functional requirements that have been identified for this case study.
 
@@ -99,29 +99,29 @@ Once the user has identified an offer that they are interested in, they should b
 
 Instead of viewing a list of offers based on proximity, users may prefer to see a graphical map showing their position in relation to the offers around them. This is because some users express a preference for (ref?) graphical visualisations over textual list-type views. Providing a map-based interface also adheres to the Android Design Principle _real objects are more fun than buttons and menus_. [@androiddesign]. However, care must be taken not to 'overload' view with an excessive number of markers which may obscure map details and prevent users from orienting themselves in the surrounding area.
 
-#### FR06: Allow user to see their location in the map view
+#### FR06: Allow user to see their location in the map view
 
 Users are accustomed to map views offering a 'My Location'-type feature which indicates their current position in relation to places of interest around them, often using a blue dot. This type of feature should also be incorporated into the map view for consistency with other apps such as Google Maps itself.
 
-#### FR07: Indicate which offers currently avaible using graphics
+#### FR07: Indicate which offers currently avaible using graphics
 
 Following the Android Design Principle that _pictures are faster than words_ [@androiddesign], the user interface should use graphics and other visual effects (such as highlight colours) to identify the status of each offer. An example of this would be to use a different icon to represent an offer that is currently available on list and map views, rather than a simple piece of text. However, if icons are used, care should be taken to ensure that they are easily understood by the majority of users (ref Hamburger icon article) and do not create confusion.
 
-#### FR08: Initialise database of available offers using external API
+#### FR08: Initialise database of available offers using external API
 
 The list of offers available using the app may change periodically as new partners decide to participate or existing partners decide to change the terms of their offers (for example start or end times). To ensure that the app always offers the most up-to-date list of available offers when it is installed, the offer database should be obtained by making a call to a central REST API when the app is run for the first time.
 
 If problems occur when initialising the database from the web API, the app should give the user the opportunity to retry the operation, avoiding unneeded technical detail. This adheres to the Android Design Principle of _it's not my fault_ [@androiddesign].
 
-#### FR09: Update offer database automatically using API without requiring app update
+#### FR09: Update offer database automatically using API without requiring app update
 
 Users should be able to take advantage of udpated offer information without having to upgrade or reinstall the app itself. The app should periodically check the API in order to update its local database of offers. However the update process, and in particular any network errors that occur, should not interfere with the normal operation of the app (again, as per _it's not my fault_).
 
-#### FR10: Support adding users' personal ratings for each offer
+#### FR10: Support adding users' personal ratings for each offer
 
 The Android Design Principle _let me make it mine_ [@androiddesign] states that users like to add personal touches and 'optional customisations'. This principle is met by allowing users to assign a 'star rating' on the detailed offer view. The star rating they give each offer should be stored by the app and redisplayed on subequent uses of the detailed view, also following the principle of _never lose my stuff_.
 
-#### FR11: Upload anonymised user ratings to central database
+#### FR11: Upload anonymised user ratings to central database
 
 When a user has added a personal rating for an offer, as well as storing the rating internally the app should attempt to submit the rating to a central database (including the offer identifier, rating and date and time when the rating was set). At this stage no personally identifiable data (such as location) should be sent to the server to avoid infringing the user's privacy. A server using a REST API will be made available to receive ratings sent by the app.
 
@@ -131,36 +131,36 @@ The rationale behind this requirement is to build up a central database of ratin
 
 Following the Android Design Principles [@androiddesign] _delight me in surprising ways_, the app should make judicious use of sound effects to respond to and reward user activity. An effect should be played both when a user opens the detailed view of an offer and when they as a personal rating for the offer. The goal is to encourage the user to interact with the app more and make their experience more enjoyable.
 
-### Non-functional
+### Non-functional
 
 Non-functional requirements are other qualities that the product must have in order to be acceptable to the user [@robertson2012]. These may include such properties as security, capacity, performance and compliance to standards. They can also be described as constraints placed on the system [@arlow].
 
-#### NFR01: Support up to 1000 offers at one time without impaired function
+#### NFR01: Support up to 1000 offers at one time without impaired function
 
 The app should be able to handle a large database of offers to allow it to continue to be work effectively even many additional partners are signed up. The initial offer database is expeced to contain less than 100 offers, however the behaviour of the app with up to 1000 offers should not be noticeably impaired in any way.
 
 #### NFR02: Respond to all user interactions within 100ms
 
-#### NFR03: Localisation support
+#### NFR03: Localisation support
 
 As the app may be launched in future in other countries, it is essential that it can be easily translated into other languages. For this reason all strings and graphical text used within the app should be stored using localised resources instead of being hard-coded. The default language may be assumed to be English. No special support for right-to-left text or layouts is required for the MVP app.
 
-#### NFR04: Accessibility
+#### NFR04: Accessibility
 
 ?
 
-#### NFR05: Standards? Privacy etc?
+#### NFR05: Standards? Privacy etc?
 
-# Prototype
+# Prototype
 
 
-## Designing the user interface
+## Designing the user interface
 
 Although as Nielsen [-@nielsen1996] points out, 'Designers Are Not Users', and we should be wary of using our intuition alone in making design decision, for the purposes of creating an MVP for this project I have used my own desires and expectations as a guide in organising the user interface.
 
 ...
 
-### Multi-device support
+### Multi-device support
 
 We can assume that the primary use of the app will be by mobile users, since it provides functionality in the 'eating out' scenario where it can be assumed that users are less likely to be at home and have access to larger devices. Nonetheless, some users do carry tablets with them and many newer tablets include GPS receivers which would allow the user's location to be identified similarly to a mobile.
 
@@ -170,13 +170,13 @@ For larger screen widths, such as a tablet in landscape orientation, a different
 
 For this app a dual-pane screen layout will be available to tablet users in landscape mode, replacing the separate list and detail views with a combined dual-pane mode. The advantage of this mode is that it makes it easier to flick between several offers and makes better use of screen real estate.
 
-### Splash screen
+### Splash screen
 
 The functional requirements for the app (ref?) include the need to load new offer data when it is first started. It would be confusing for the user if the list view of offers were displayed before any data was available to populate it. To avoid this problem we can display a temporary screen to the user (sometimes known as an interstitial, or 'splash' screen) before the user interface fully appears.
 
 Nielsen [-@nielsen2013] describes splash screens as a 'user experience sin' that has been reintroduced in the mobile app era. However, the specification for Material Design [@material], the recommended Android design language, argues in favour of 'launch screens' on the grounds that they increase perceived loading time. They also provide an opportunity to display the app logo and "improve brand recognition". Notably, it recommends that the launch screen should only be shown for the initial 'cold' launch from the home screen.
 
-# Architecture
+# Architecture
 
 
 
@@ -192,7 +192,7 @@ The exact role of the controller has been interpreted differently by authors. Fo
 
 As with other layered architectures, the potential benefits of MVC are that it helps to manage the complexity of a large application, allowing new developers to understand the codebase and find where a particular piece of functionality is implemented. This may lead to a reduction in maintainance costs. As a form of modularisation, it also facilitating reuse of code, and enables the implementation of different parts of the application to be changed by reducing the amount of coupling between classes.
 
-## MVC and the Android platform
+## MVC and the Android platform
 
 The Android platform supports an MVC architecture but does not enforce the use of any one paradigm. Instead developers have to make conscious decisions to avoid mixing data/model and presentation concerns within the same layer. Apart from the provided `View` class hierarchy, Android does not use MVC terminology directly. However, one typical way of mapping MVC into Android is outlined by [@bignerd]:
 
@@ -208,7 +208,7 @@ An essential feature of MVC on Android as described by [@bignerd] is that there 
 
 Fowler [@fowler] identifies one common problem for rich clients: the need to ensure consistency of data across multiple views. Any change to the model, whether caused by a user interacting with one presentation or by external events, needs to be reflected across all presentations. In the Android platform we can approach this problem by ensuring that `Fragment`s register event listeners for any changes to the model they use.
 
-## Use of MVC within _halfpricesushi_
+## Use of MVC within _halfpricesushi_
 
 Reenskaug suggests that the MVC paradigm is beneficial when the user needs to see the same data in different contexts and/or different viewpoints [@reenskaug]. The _halfpricesushi_ app has exactly this requirement, showing users information about special offers using three different 'views':
 
@@ -224,7 +224,7 @@ The `Activity` and `Fragment` classes used within the app act as controllers, wi
 
 # Development
 
-## Multi-device support
+## Multi-device support
 
 The dual-pane tablet mode described above can be implemented on Android by providing different XML layout files and then using 'configuration qualifiers' to determine when those layouts should be applied. In earlier versions the recommendation was to use the generalised screen sizes (such as `large`, `xlarge`) to select layouts; this has been deprecated since Android 3.2 in favour of using `dp` (density-independent pixel) sizes [@androidscreens].
 
@@ -237,7 +237,7 @@ An alternate approach would be to determine the screen size at runtime (perhaps 
 
 Note that some code to explicitly detect dual-pane mode is included.
 
-# Testing
+# Testing
 
 During and after development it is essential to incorporate testing using a variety of approaches. This project includes different types of testing:
 
@@ -253,11 +253,11 @@ Unit tests are software tests, usually automated, that can be used to determine 
 
 Android Studio subdivides unit tests into 'local unit tests', defined as tests which can be run on the developer's machine without any dependency on the Android framework, and 'instrumented tests' which must be run on an Android hardware device or emulator. Both are implemented using the popular [JUnit](http://junit.org/junit4/) testing framework.
 
-### Local unit tests
+### Local unit tests
 
 The file `OutletTest.java` implements some unit tests for the `Outlet` model class, demonstrating the approach of testing a class without any framework dependencies. An `initialise` method with the `@Before` annotation is used to set up the object under test, after which a series of methods with the `@Test` annotation exercise different methods of the `Outlet` class under different scenarios, such as with or without ratings or opening hours having been set.
 
-### Instrumented tests
+### Instrumented tests
 
 Or not?
 
@@ -269,7 +269,7 @@ Whether a mobile app is usable can be equally important as whether it is functio
 
 As Brooke [-@brooke] points out, in order to assess these three characteristics of effectiveness, efficiency and satisfaction we also need to consider the context in which the product or system is used and the purpose it used for. The effectiveness of an online clothes' retailer's website cannot be easily compared to the effectiveness of a system for managing railway track safety. 
 
-### Testing plan
+### Testing plan
 
 Nielsen [-@nielsen1996] outlines an approach he called 'Discount Usability Engineering' which relies on the following techniques in order to uncover usability problems at low cost to the organisation:
 
@@ -289,7 +289,7 @@ The format of the testing was a series of 10-15 minute sessions in which each pa
 
 At the end of the tasks, the user was asked to give any specific feedback about the app and also to complete a survey on their feelings about its usability (see below).
 
-### Survey design
+### Survey design
 
 Several measures exist for making subjective assessments of usability, usually through questionnaires which users of the system are asked to complete by putting a numeric score against a series of statements or prompts. Although a custom metrics could be created for each research exercise, one advantage of using a ready-made scoring system is that it allows for rough comparison both across versions of a product and between different products  Using an existing scale also reduces some of the costs associated with usability research.
 
@@ -299,11 +299,11 @@ The System Usability Scale (SUS) created by Digital Equipment Corporation is one
 
 A number of useful insights were obtained from observing users interacting with the app and describing their own actions, and from asking their opinions at the end of the tasks. These insights were recorded and used in order to make improvements to the user interface.
 
-### Quantitative data
+### Quantitative data
 
 The results of the SUS surveys were collated and used to produce a ...
 
-## Functional testing
+## Functional testing
 
 Functional testing is a form of software testing that verifies whether the system meets the original functional requirements that led to its creation. It essentially focuses on whether the software does what it is supposed to do, viewing it as a 'black box', without any knowledge of how the system has been implemented [@desikan]. In this sense it reflects the point of view of a user of the system.
 
@@ -311,7 +311,7 @@ One way of conducting functional testing this is to producte a set of test cases
 
 The following functional test scenario demonstrates this approach:
 
-### Functional test TR01
+### Functional test TR01
 
 Requirement(s) tested
 :    FR04 (Display a detailed view of each offer and location)
@@ -329,7 +329,7 @@ Pass criteria
 Result
 :    Pass
 
-### Functional test TR02
+### Functional test TR02
 
 Requirement(s) tested
 :    FR08 (Initialise database of available offers using external API)
