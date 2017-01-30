@@ -342,4 +342,65 @@ references:
     - - 2017
       - 01
       - 30
+- id: nielsen2012
+  title: How Many Test Users in a Usability Study?
+  author:
+  - family: Nielsen
+    given: Jakob
+  type: webpage
+  URL: https://www.nngroup.com/articles/how-many-test-users/
+  issued: 2012
+  accessed:
+    date-parts:
+    - - 2017
+      - 01
+      - 30
+- id: androidscreens
+  title: 'Android Best Practices: Supporting Multiple Screens'
+  author:
+  - literal: Google
+  type: webpage
+  URL: https://developer.android.com/guide/practices/screens_support.html
+  issued: 2016
+  accessed:
+    date-parts:
+    - - 2017
+      - 01
+      - 29
+- id: fowlerunit
+  title: UnitTest
+  author:
+  - family: Fowler
+    given: Martin
+  type: webpage
+  URL: https://martinfowler.com/bliki/UnitTest.html
+  issued: 2014
+  accessed:
+    date-parts:
+    - - 2017
+      - 01
+      - 30
+- id: vogella
+  title: Developing Android unit and instrumentation tests
+  author:
+  - literal: vogella GmbH
+  type: webpage
+  URL: http://www.vogella.com/tutorials/AndroidTesting/article.html
+  issued: 2012
+  accessed:
+    date-parts:
+    - - 2017
+      - 01
+      - 30
+- id: desikan
+  title: 'Software Testing: Principles and Practice'
+  author:
+  - family: Ramesh
+    given: Gopalaswamy
+  - family: Desikan
+    given: Srinivasan
+  type: book
+  publisher: Dorling Kindersley
+  publisher-place: Delhi, India
+  issued: 2005
 ...

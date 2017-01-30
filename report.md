@@ -56,7 +56,7 @@ Arlow and Neustadt [-@arlow] propose using simple 'shall' statements combined wi
 
 > _id_ The _system_ shall _function_
 
-For the purposes of setting requirements I will take a similar approach, omitting the repeated phrase "The app shall". In addition, it is useful to capture the relative _priority_ of requirements to help in planning the development process. For this project we will use the requirement level terminology formalised by RFC 2119 [-@bradner]. Other options include the MoSCoW criteria (Must have, Should have, etc.) described by Arlow and Neustadt [-@arlow].
+For the purposes of setting requirements I will take a similar approach, omitting the repeated phrase "The app shall". In addition, it is useful to capture the relative _priority_ of requirements to help in planning the development process. For this project we will use the requirement level terminology formalised by RFC 2119 [-@bradner]. Other options include the MoSCoW criteria (Must have, Should have, etc.) described by Arlow and Neustadt [-@arlow], or levels (High, Medium or Low).
 
 In a normal requirements gathering process we might perform interviews or workshops with stakeholders or use questionnaires to elicit information. For the purposes of this project, functional and non-functional requirements will be identified primarily based on the background and domain research described above, along with the applicable Android design principles [@androiddesign].
 
@@ -160,6 +160,16 @@ Although as Nielsen [-@nielsen1996] points out, 'Designers Are Not Users', and w
 
 ...
 
+### Multi-device support
+
+We can assume that the primary use of the app will be by mobile users, since it provides functionality in the 'eating out' scenario where it can be assumed that users are less likely to be at home and have access to larger devices. Nonetheless, some users do carry tablets with them and many newer tablets include GPS receivers which would allow the user's location to be identified similarly to a mobile.
+
+For larger screen widths, such as a tablet in landscape orientation, a different screen layout should be offered in order to make more efficient used of the increased available space. This approach is endorsed by the Android Best Practices, which state that "the objective of supporting multiple screens is to create an application that can function properly and look good on any of the generalized screen configurations supported by Android." [@androidscreens].
+
+(diagram?)
+
+For this app a dual-pane screen layout will be available to tablet users in landscape mode, replacing the separate list and detail views with a combined dual-pane mode. The advantage of this mode is that it makes it easier to flick between several offers and makes better use of screen real estate.
+
 ### Splash screen
 
 The functional requirements for the app (ref?) include the need to load new offer data when it is first started. It would be confusing for the user if the list view of offers were displayed before any data was available to populate it. To avoid this problem we can display a temporary screen to the user (sometimes known as an interstitial, or 'splash' screen) before the user interface fully appears.
@@ -167,6 +177,8 @@ The functional requirements for the app (ref?) include the need to load new offe
 Nielsen [-@nielsen2013] describes splash screens as a 'user experience sin' that has been reintroduced in the mobile app era. However, the specification for Material Design [@material], the recommended Android design language, argues in favour of 'launch screens' on the grounds that they increase perceived loading time. They also provide an opportunity to display the app logo and "improve brand recognition". Notably, it recommends that the launch screen should only be shown for the initial 'cold' launch from the home screen.
 
 # Architecture
+
+
 
 ## Model View Controller
 
@@ -210,22 +222,44 @@ The model classes have been organised into a separate package, `io.github.jamesd
 
 The `Activity` and `Fragment` classes used within the app act as controllers, with no direct interaction between model and view classes. Additionally, the use of a `RecyclerView` within `OutletListFragment` allows the underlying data source (a `List` of `Outlet` instances) to be abstracted away from the list view layer via a custom `RecyclerView.Adapter` subclass (note that this class is not a part of the `.model` package itself, although it manages objects from that package). The `RecylerView` does not interact directly with any `Outlet` objects directly but delegates this behaviour to the `Adapter` and `ViewHolder` abstractions.
 
-
 # Development
+
+## Multi-device support
+
+The dual-pane tablet mode described above can be implemented on Android by providing different XML layout files and then using 'configuration qualifiers' to determine when those layouts should be applied. In earlier versions the recommendation was to use the generalised screen sizes (such as `large`, `xlarge`) to select layouts; this has been deprecated since Android 3.2 in favour of using `dp` (density-independent pixel) sizes [@androidscreens].
+
+In the case of _halfpricesushi_, I have decided to use the dual-pane mode on devices where the available screen width is over 600dp (the typical width of a 7" tablet). This is implemented by providing two XML layout files for `OutletListFragment`:
+
+    res/layout/fragment_outlet_list.xml           # For handsets
+    res/layout-w600dp/fragment_outlet_list.xml    # For tablets
+
+An alternate approach would be to determine the screen size at runtime (perhaps using `Display#getMetrics`) and switch the layout programatically. The advantage of using configuration qualifiers is that the platform takes care of the switching without the need to write any code. It also allows for better support within IDEs.
+
+Note that some code to explicitly detect dual-pane mode is included.
 
 # Testing
 
 During and after development it is essential to incorporate testing using a variety of approaches. This project includes different types of testing:
 
 - Unit testing
-- Functionality testing
 - Usability testing
+- Functionality testing
 
 The following sections describe the approach taken for each of these in more detail.
 
 ## Unit testing
 
-## Functionality testing
+Unit tests are software tests, usually automated, that can be used to determine the correctness of a unit of software. In object-oriented software development (including Android) the class is normally considered the unit of software, however this is at the discretion of the developer and unit tests may span multiple related classes that collaborate with each other [@fowlerunit]. Another characteristic of unit tests is that they are typically fast, and can therefore be run regularly during the development process to catch regressions more quickly. Some (such as [@vogella]) suggest that 70-80% of tests written should be unit tests.
+
+Android Studio subdivides unit tests into 'local unit tests', defined as tests which can be run on the developer's machine without any dependency on the Android framework, and 'instrumented tests' which must be run on an Android hardware device or emulator. Both are implemented using the popular [JUnit](http://junit.org/junit4/) testing framework.
+
+### Local unit tests
+
+The file `OutletTest.java` implements some unit tests for the `Outlet` model class, demonstrating the approach of testing a class without any framework dependencies. An `initialise` method with the `@Before` annotation is used to set up the object under test, after which a series of methods with the `@Test` annotation exercise different methods of the `Outlet` class under different scenarios, such as with or without ratings or opening hours having been set.
+
+### Instrumented tests
+
+Or not?
 
 ## Usability testing
 
@@ -235,27 +269,82 @@ Whether a mobile app is usable can be equally important as whether it is functio
 
 As Brooke [-@brooke] points out, in order to assess these three characteristics of effectiveness, efficiency and satisfaction we also need to consider the context in which the product or system is used and the purpose it used for. The effectiveness of an online clothes' retailer's website cannot be easily compared to the effectiveness of a system for managing railway track safety. 
 
-Several measures exist for making subjective assessments of usability, usually through questionnaires which users of the system are asked to complete by putting a numeric score against a series of statements or prompts. Although a custom metrics could be created for each research exercise, one advantage of using a ready-made scoring system is that it allows for rough comparison both across versions of a product and between different products.
+### Testing plan
 
-The System Usability Scale (SUS) created by Digital Equipment Corporation is one such measure [@brooke]. It is implemented as a Likert scale where the respondent indicates their level of agreement or disagreement with statements such as _I found the system unnecessarily complex_. The SUS has only ten questions and can therefore be completed quickly and easily.
-
-Using an existing scale also reduces some of the costs associated with usability research. Nielsen has described an approach called 'Discount Usability Engineering' [@nielsen1996] which relies on the following techniques:
+Nielsen [-@nielsen1996] outlines an approach he called 'Discount Usability Engineering' which relies on the following techniques in order to uncover usability problems at low cost to the organisation:
 
 - User and task observation
-- Scenarios
 - Simplified thinking aloud
+- Scenarios
 - Heuristic evaluation
 
+In order to apply the first three of these to this project, five users were selected to participate in usability tests. This follows Nielsen's [-@nielsen2012] other observation of rapidly diminishing returns when more than five participants are used. Those who worked in software development or user experience design were excluded from the trials due to the possibility of them having unusual levels of expertise. All of the users were familiar with the geographical area which is the main focus of the app (Central London) and were familiar with the terms of the specific food offer provided (reduced sushi).
 
+The format of the testing was a series of 10-15 minute sessions in which each participant was asked to complete a series of directed tasks using the app on a mobile phone, while an observer watched and took notes about their progress. As each user performed the task they were required to say aloud what they were seeing and doing. There was no fixed number of tasks to be performed, as some users completed them more quickly than others. The tasks were given context by situating them in a scenario that explained the user's motivation, without telling them exactly how to complete the task. They included:
 
-Nielsen [@nielsen1996] (does he?) defines five attributes which can be used to judge the usability of a system via a questionnaire or other evaluation process. The following table lists these attributes along with examples of ways they could be used to evaluate the specific app being developed:
+- Find the sushi outlet nearest to you right now with a special offer starting at 5pm
+- You want to know what time the Aldgate outlet closes on Tuesdays - find this out
+- You had a bad experience in the Bishopsgate outlet, find it and give it a rating
+- You know there is a sushi outlet somewhere near Regent's Park, find it
 
-Attribute                Question
------------------------- ------------------------------------------------------
-Learnability             How much effort is required for a new user of the app to learn its features
-Efficiency               Can experienced users of the app achieve their goals quickly?
-Memorability             Do users find it easy to remember how to use the app's features on subsequent visits
-Errors (Accuracy)        How often to errors occur in normal operation of the system? How well are they handled?
-Subjective Satisfaction  Do users like the app? Are they satisfied that it is usable?
+At the end of the tasks, the user was asked to give any specific feedback about the app and also to complete a survey on their feelings about its usability (see below).
+
+### Survey design
+
+Several measures exist for making subjective assessments of usability, usually through questionnaires which users of the system are asked to complete by putting a numeric score against a series of statements or prompts. Although a custom metrics could be created for each research exercise, one advantage of using a ready-made scoring system is that it allows for rough comparison both across versions of a product and between different products  Using an existing scale also reduces some of the costs associated with usability research.
+
+The System Usability Scale (SUS) created by Digital Equipment Corporation is one such measure [@brooke]. It is implemented using a Likert scale in which the respondent indicates their level of agreement or disagreement with statements such as _I found the system unnecessarily complex_. The SUS has only ten questions and can therefore be completed quickly and easily.
+
+### Informal feedback
+
+A number of useful insights were obtained from observing users interacting with the app and describing their own actions, and from asking their opinions at the end of the tasks. These insights were recorded and used in order to make improvements to the user interface.
+
+### Quantitative data
+
+The results of the SUS surveys were collated and used to produce a ...
+
+## Functional testing
+
+Functional testing is a form of software testing that verifies whether the system meets the original functional requirements that led to its creation. It essentially focuses on whether the software does what it is supposed to do, viewing it as a 'black box', without any knowledge of how the system has been implemented [@desikan]. In this sense it reflects the point of view of a user of the system.
+
+One way of conducting functional testing this is to producte a set of test cases using from the requirements described at the start of the development process, by writing a list of simple steps that can be followed to check each requirement against the expected behaviour. Alternate flows and error scenarios should also be considered. These steps can then be checked manually by a test engineer and the results recorded. Each test case should include a reference to the original requirement that produced it, in order to ensure traceability and make it possible to verify of the level of test coverage of each requirement.
+
+The following functional test scenario demonstrates this approach:
+
+### Functional test TR01
+
+Requirement(s) tested
+:    FR04 (Display a detailed view of each offer and location)
+
+Description
+:    Checks if the user can view detailed information about an offer from the list view
+
+Steps
+:    1. View the list of available offers
+     2. Tap on one of the offers displayed
+
+Pass criteria
+:    A detailed view is displayed corresponding to the offer that the user selected
+
+Result
+:    Pass
+
+### Functional test TR02
+
+Requirement(s) tested
+:    FR08 (Initialise database of available offers using external API)
+
+Description
+:    Checks if the user can continue to use the app using cached offer data in the event of network failure
+
+Steps
+:    1. Ensure the app has been previously run and successfully loaded data from the API
+     2. With no network access available, run the app from the home screen
+
+Pass criteria
+:    The list of offers should be displayed using cached offer data, and a message should be displayed warning the user that the update failed.
+
+Result
+:    Pass
 
 # References
