@@ -310,7 +310,7 @@ references:
   issue: 194
   page: 4-7
   issued: 1996
-- id: nielsen1993
+- id: nielsen1996
   title: Usability Engineering
   author:
   - family: Nielsen
@@ -319,4 +319,27 @@ references:
   publisher: Academic Press
   publisher-place: Cambridge, MA
   issued: 1996
+- id: nielsen2013
+  title: Mobile Usability
+  author:
+  - family: Nielsen
+    given: Jakob
+  - family: Budiu
+    given: Raluca
+  type: book
+  publisher: New Riders
+  publisher-place: Berkley, CA
+  issued: 2013
+- id: material
+  title: Material Design Patterns - Launch screens
+  author:
+  - literal: Google
+  type: webpage
+  URL: https://material.io/guidelines/patterns/launch-screens.html
+  issued: 2013
+  accessed:
+    date-parts:
+    - - 2017
+      - 01
+      - 30
 ...

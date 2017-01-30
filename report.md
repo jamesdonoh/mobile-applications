@@ -154,9 +154,17 @@ As the app may be launched in future in other countries, it is essential that it
 # Prototype
 
 
-## User interface
+## Designing the user interface
 
 Although as Nielsen [-@nielsen1996] points out, 'Designers Are Not Users', and we should be wary of using our intuition alone in making design decision, for the purposes of creating an MVP for this project I have used my own desires and expectations as a guide in organising the user interface.
+
+...
+
+### Splash screen
+
+The functional requirements for the app (ref?) include the need to load new offer data when it is first started. It would be confusing for the user if the list view of offers were displayed before any data was available to populate it. To avoid this problem we can display a temporary screen to the user (sometimes known as an interstitial, or 'splash' screen) before the user interface fully appears.
+
+Nielsen [-@nielsen2013] describes splash screens as a 'user experience sin' that has been reintroduced in the mobile app era. However, the specification for Material Design [@material], the recommended Android design language, argues in favour of 'launch screens' on the grounds that they increase perceived loading time. They also provide an opportunity to display the app logo and "improve brand recognition". Notably, it recommends that the launch screen should only be shown for the initial 'cold' launch from the home screen.
 
 # Architecture
 
@@ -240,7 +248,7 @@ Using an existing scale also reduces some of the costs associated with usability
 
 
 
-Nielsen [@nielsen1993] defines five attributes which can be used to judge the usability of a system via a questionnaire or other evaluation process. The following table lists these attributes along with examples of ways they could be used to evaluate the specific app being developed:
+Nielsen [@nielsen1996] (does he?) defines five attributes which can be used to judge the usability of a system via a questionnaire or other evaluation process. The following table lists these attributes along with examples of ways they could be used to evaluate the specific app being developed:
 
 Attribute                Question
 ------------------------ ------------------------------------------------------
