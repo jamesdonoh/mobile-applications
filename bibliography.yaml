@@ -287,4 +287,36 @@ references:
   publisher-place: Atlanta, GA
   issued: 2015
   edition: 2nd edition
+- id: iso9241
+  title: 'ISO 9241-11:1998: Ergonomic requirements for office work with visual display terminals (VDTs) — Part 11: Guidance on usability'
+  author:
+  - literal: International Organization for Standardization
+  type: webpage
+  URL: https://www.iso.org/obp/ui/#iso:std:iso:9241:-11:ed-1:v1:en
+  issued: 1998
+  accessed:
+    date-parts:
+    - - 2017
+      - 01
+      - 30
+- id: brooke
+  author:
+  - family: Brooke
+    given: John
+  title: 'SUS - A quick and dirty usability scale'
+  type: article-journal
+  container-title: Usability evaluation in industry
+  volume: 189
+  issue: 194
+  page: 4-7
+  issued: 1996
+- id: nielsen1993
+  title: Usability Engineering
+  author:
+  - family: Nielsen
+    given: Jakob
+  type: book
+  publisher: Academic Press
+  publisher-place: Cambridge, MA
+  issued: 1996
 ...

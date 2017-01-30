@@ -153,6 +153,11 @@ As the app may be launched in future in other countries, it is essential that it
 
 # Prototype
 
+
+## User interface
+
+Although as Nielsen [-@nielsen1996] points out, 'Designers Are Not Users', and we should be wary of using our intuition alone in making design decision, for the purposes of creating an MVP for this project I have used my own desires and expectations as a guide in organising the user interface.
+
 # Architecture
 
 ## Model View Controller
@@ -165,7 +170,7 @@ The MVC pattern originated in experiments in graphical interfaces conducted at X
 
 The exact role of the controller has been interpreted differently by authors. Fowler says that the controller takes user input, manipulates the model and causes the view(s) to update [@fowler]. However, Reenskaug's proposal was that views handle their own user input, with the controller only responsible for coordinating views and handling level at the input of the whole application [@reenskaug]. It is worth noting that Fowler believes the precise separation between view and controller (V/C) is less important than the separation between model and presentaion (M/VC).
 
-As with other layered architectures, the potential benefits of MVC are that it helps to manage the complexity of a large application, as well as facilitating reuse and refactoring by reducing the amount of coupling between classes.
+As with other layered architectures, the potential benefits of MVC are that it helps to manage the complexity of a large application, allowing new developers to understand the codebase and find where a particular piece of functionality is implemented. This may lead to a reduction in maintainance costs. As a form of modularisation, it also facilitating reuse of code, and enables the implementation of different parts of the application to be changed by reducing the amount of coupling between classes.
 
 ## MVC and the Android platform
 
@@ -201,5 +206,48 @@ The `Activity` and `Fragment` classes used within the app act as controllers, wi
 # Development
 
 # Testing
+
+During and after development it is essential to incorporate testing using a variety of approaches. This project includes different types of testing:
+
+- Unit testing
+- Functionality testing
+- Usability testing
+
+The following sections describe the approach taken for each of these in more detail.
+
+## Unit testing
+
+## Functionality testing
+
+## Usability testing
+
+Whether a mobile app is usable can be equally important as whether it is functional. Usability is is defined by ISO 9241-11 as the 
+
+> extent to which a product can be used by specified users to achieve specified goals with effectiveness, efficiency and satisfaction in a specified context of use [-@iso9241, section 3.1] 
+
+As Brooke [-@brooke] points out, in order to assess these three characteristics of effectiveness, efficiency and satisfaction we also need to consider the context in which the product or system is used and the purpose it used for. The effectiveness of an online clothes' retailer's website cannot be easily compared to the effectiveness of a system for managing railway track safety. 
+
+Several measures exist for making subjective assessments of usability, usually through questionnaires which users of the system are asked to complete by putting a numeric score against a series of statements or prompts. Although a custom metrics could be created for each research exercise, one advantage of using a ready-made scoring system is that it allows for rough comparison both across versions of a product and between different products.
+
+The System Usability Scale (SUS) created by Digital Equipment Corporation is one such measure [@brooke]. It is implemented as a Likert scale where the respondent indicates their level of agreement or disagreement with statements such as _I found the system unnecessarily complex_. The SUS has only ten questions and can therefore be completed quickly and easily.
+
+Using an existing scale also reduces some of the costs associated with usability research. Nielsen has described an approach called 'Discount Usability Engineering' [@nielsen1996] which relies on the following techniques:
+
+- User and task observation
+- Scenarios
+- Simplified thinking aloud
+- Heuristic evaluation
+
+
+
+Nielsen [@nielsen1993] defines five attributes which can be used to judge the usability of a system via a questionnaire or other evaluation process. The following table lists these attributes along with examples of ways they could be used to evaluate the specific app being developed:
+
+Attribute                Question
+------------------------ ------------------------------------------------------
+Learnability             How much effort is required for a new user of the app to learn its features
+Efficiency               Can experienced users of the app achieve their goals quickly?
+Memorability             Do users find it easy to remember how to use the app's features on subsequent visits
+Errors (Accuracy)        How often to errors occur in normal operation of the system? How well are they handled?
+Subjective Satisfaction  Do users like the app? Are they satisfied that it is usable?
 
 # References
