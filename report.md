@@ -59,7 +59,7 @@ As GPS receivers have become a standard feature on smartphones, users now expect
 
 It should be noted that not all smartphone owners are comfortable with using geolocation features, sometimes because of doubts over how information about their location might be used by app developers. A recent survey [@punchtab] showed that 50% of mobile users were reluctant to share their location due to privacy concerns. However, the same survey showed that the biggest reason given (88%) for users to allow location tracking was the availability of "coupons or special offers". This suggests that users will be prepared to allow _HalfPrice Sushi_ to access their location because it will provide them with such offers. However the app should be designed so that it is still usable even without access to location services.
 
-For example, the first screen that the user sees when running the Just Eat app prompts them to enter their postcode:
+For example, the first screen that the user sees when running the Just Eat app prompts them to enter their postcode.
 
 ![Just Eat: postcode input screen](justeat-postcode.png){ width=50% }
 
@@ -79,7 +79,7 @@ Once the user has identified an offer that they are interested in, they should b
 
 #### FR05: Provide map-based view of all offers in the surrounding area
 
-Instead of viewing a list of offers based on proximity, users may prefer to see a graphical map showing their position in relation to the offers around them. This is because some users express a preference for (ref?) graphical visualisations over textual list-type views. Providing a map-based interface also adheres to the Android Design Principle _real objects are more fun than buttons and menus_. [@androiddesign]. However, care must be taken not to 'overload' view with an excessive number of markers which may obscure map details and prevent users from orienting themselves in the surrounding area.
+Instead of viewing a list of offers based on proximity, users may prefer to see a graphical map showing their position in relation to the offers around them. This is because some users express a preference for graphical visualisations over textual list-type views. Providing a map-based interface also adheres to the Android Design Principle _real objects are more fun than buttons and menus_. [@androiddesign]. However, care must be taken not to 'overload' view with an excessive number of markers which may obscure map details and prevent users from orienting themselves in the surrounding area.
 
 #### FR06: Allow user to see their location in the map view
 
@@ -87,7 +87,7 @@ Users are accustomed to map views offering a 'My Location'-type feature which in
 
 #### FR07: Indicate which offers currently available using graphics
 
-Following the Android Design Principle that _pictures are faster than words_ [@androiddesign], the user interface should use graphics and other visual effects (such as highlight colours) to identify the status of each offer. An example of this would be to use a different icon to represent an offer that is currently available on list and map views, rather than a simple piece of text. However, if icons are used, care should be taken to ensure that they are easily understood by the majority of users (ref Hamburger icon article) and do not create confusion.
+Following the Android Design Principle that _pictures are faster than words_ [@androiddesign], the user interface should use graphics and other visual effects (such as highlight colours) to identify the status of each offer. An example of this would be to use a different icon to represent an offer that is currently available on list and map views, rather than a simple piece of text. However, if icons are used, care should be taken to ensure that they are easily understood by the majority of users and do not create confusion.
 
 #### FR08: Initialise database of available offers using external API
 
@@ -169,7 +169,7 @@ For this app a dual-pane screen layout (Figure \ref{dualpane}) will be created f
 
 ### Splash screen
 
-The functional requirements for the app (ref?) include the need to load new offer data when it is first started. It would be confusing for the user if the list view of offers were displayed before any data was available to populate it. To avoid this problem we can display a temporary screen to the user (sometimes known as an interstitial, or 'splash' screen) before the user interface fully appears.
+The functional requirements for the app include the need to load new offer data when it is first started. It would be confusing for the user if the list view of offers were displayed before any data was available to populate it. To avoid this problem we can display a temporary screen to the user (sometimes known as an interstitial, or 'splash' screen) before the user interface fully appears.
 
 Nielsen [-@nielsen2013] describes splash screens as a 'user experience sin' that has been reintroduced in the mobile app era. However, the specification for Material Design [@material], the recommended Android design language, argues in favour of 'launch screens' on the grounds that they increase perceived loading time. They also provide an opportunity to display the app logo and "improve brand recognition". Notably, it recommends that the launch screen should only be shown for the initial 'cold' launch from the home screen.
 
@@ -179,7 +179,7 @@ Nielsen [-@nielsen2013] describes splash screens as a 'user experience sin' that
 
 Model View Controller (MVC) is a well-established pattern in application architecture for creating a separation of concerns between user interface and business logic and/or domain model.
 
-According to Fowler [@fowler] the separation of presentation from model is of fundamental importance in software architecture. It allows code that describes business logic and provides access to data (for example via databases or APIs) to be developed and tested separately, independently of the user interface, and enables the possibility of reusing the same model code with different interfaces (such as a website and the command-line). It also allows for greater specialisation of development skills within different areas, and simplification of the development process.
+According to Fowler [-@fowler] the separation of presentation from model is of fundamental importance in software architecture. It allows code that describes business logic and provides access to data (for example via databases or APIs) to be developed and tested separately, independently of the user interface, and enables the possibility of reusing the same model code with different interfaces (such as a website and the command-line). It also allows for greater specialisation of development skills within different areas, and simplification of the development process.
 
 The MVC pattern originated in experiments in graphical interfaces conducted at Xerox PARC the late 1970s and was originally implemented for the Smalltalk language. As originally conceived, the model is an abstract representation of some type of knowledge, while the view or views are representations of that model that the user can interact with, while creating the impression they are seeing and manipulating the model directly [@reenskaug].
 
@@ -195,7 +195,7 @@ The Android platform supports an MVC architecture but does not enforce the use o
 - the view(s) layer are the Android `View` classes (usually instantiated through the layout file mechanism), which are able to draw themselves and handle user input
 - the 'controller' is collection of the `Activity`, `Fragment` and/or `Service` classes that contain all the application logic and manage the flow of data between the model and view layers
 
-According to [@fowler] the model in MVC should be essentially non-visual and not depend on any user interface components. In practical terms, this strongly suggests that the model classes in an Android app should not `import` any Java classes that correspond to user interface features, such as `View`s or `Fragment`s. Where model classes have unit tests, this also allows them to be run in isolation without any dependency on a specific version of the Android API.
+According to Fowler [-@fowler] the model in MVC should be essentially non-visual and not depend on any user interface components. In practical terms, this strongly suggests that the model classes in an Android app should not `import` any Java classes that correspond to user interface features, such as `View`s or `Fragment`s. Where model classes have unit tests, this also allows them to be run in isolation without any dependency on a specific version of the Android API.
 
 Another way that separation between model and presentation can be encouraged is to use a separate Java package for the model classes. Fields and methods that are only used within model classes can therefore be declared as package-private through the omission of any explicit access level modifier [@javaaccesscontrol]. This helps to restrict access to the model from other packages (such as those containing user interface classes) to its public interface, and supports the object-oriented design principle of encapsulation [@booch]. As a secondary benefit, it permits the model implementation (for example, the choice of persistence layer) to change without affecting the rest of the application.
 
@@ -240,7 +240,7 @@ An alternate approach would be to determine the screen size at runtime (perhaps 
 
 ![Activities and fragments for dual-pane mode\label{rotation}](rotation.png)
 
-## Location services
+## Location services
 
 In order for location services to function on the Android platform specific permissions are required. These must be declared in the `AndroidManifest.xml` file, e.g.:
 
@@ -382,7 +382,7 @@ Pass criteria
 Result
 :    Pass
 
-# Evaluation and conclusions
+# Evaluation and conclusions
 
 Although simple, the finished MVP app demonstrates most of the functionally described in the requirements and would be a suitable basis for publishing in order to gather learning about user behaviour and to inform the next iteration of development.
 
