@@ -23,7 +23,7 @@ However, these new apps are largely focused on the home delivery market, meaning
 
 This suggests that there is therefore still potential for 'disruptive technologies' [@bower1995] to transform the way that restaurants, especially fast and fast-casual food outlets, attract customers using special offers and other promotions.
 
-## Proposal: _halfpricesushi_
+## Proposal: _HalfPrice Sushi_
 
 The mobile application proposed for this report will allow users to discover time-limited special offers on fast food in their vicinity. It will offer a simple and convenient interface to allow users to locate and select outlets, and allow them to share anonymous information about their experience of these outlets which can be used to improve the quality of the service for all users.
 
@@ -78,7 +78,7 @@ These requirements are explained and justified in detail in the following sectio
 
 As GPS receivers have become a standard feature on smartphones, users now expect mobile apps containing location-specific information to give them the option of sharing their position automatically via the phone's geolocation facility. Avoiding having to manually select a location is an example of 'adaptive user experience' and can be an important way of saving the user time and giving them a seamless experience [@wimberley].
 
-It should be noted that not all smartphone owners are comfortable with using geolocation features, sometimes because of doubts over how information about their location might be used by app developers. A recent survey [@punchtab] showed that 50% of mobile users were reluctant to share their location due to privacy concerns. However, the same survey showed that the biggest reason given (88%) for users to allow location tracking was the availability of "coupons or special offers". This suggests that users will be prepared to allow _halfpricesushi_ to access their location because it will provide them with such offers. However the app should be designed so that it is still usable even without access to location services.
+It should be noted that not all smartphone owners are comfortable with using geolocation features, sometimes because of doubts over how information about their location might be used by app developers. A recent survey [@punchtab] showed that 50% of mobile users were reluctant to share their location due to privacy concerns. However, the same survey showed that the biggest reason given (88%) for users to allow location tracking was the availability of "coupons or special offers". This suggests that users will be prepared to allow _HalfPrice Sushi_ to access their location because it will provide them with such offers. However the app should be designed so that it is still usable even without access to location services.
 
 #### FR02: List offers based on start and finish time
 
@@ -219,15 +219,15 @@ An essential feature of MVC on Android as described by [@bignerd] is that there 
 
 Fowler [@fowler] identifies one common problem for rich clients: the need to ensure consistency of data across multiple views. Any change to the model, whether caused by a user interacting with one presentation or by external events, needs to be reflected across all presentations. In the Android platform we can approach this problem by ensuring that `Fragment`s register event listeners for any changes to the model they use.
 
-## Use of MVC within _halfpricesushi_
+## Use of MVC within _HalfPrice Sushi_
 
-Reenskaug suggests that the MVC paradigm is beneficial when the user needs to see the same data in different contexts and/or different viewpoints [@reenskaug]. The _halfpricesushi_ app has exactly this requirement, showing users information about special offers using three different 'views':
+Reenskaug suggests that the MVC paradigm is beneficial when the user needs to see the same data in different contexts and/or different viewpoints [@reenskaug]. The _HalfPrice Sushi_ app has exactly this requirement, showing users information about special offers using three different 'views':
 
   - as an ordered textual list
   - arranged as markers on a geographical map
   - in a 'close up' view of an individual offer with additional details
 
-The model classes have been organised into a separate package, `io.github.jamesdonoh.halfpricesushi.model` to show the separation of model and presentation. Additionally, package-private access has been specified for members that should not be used outside the package (for example, the constructor for the `Outlet` class).
+The model classes have been organised into a separate package, `io.github.jamesdonoh.HalfPrice Sushi.model` to show the separation of model and presentation. Additionally, package-private access has been specified for members that should not be used outside the package (for example, the constructor for the `Outlet` class).
 
     (add diagram showing activity acting as intermediary?)
 
@@ -241,13 +241,13 @@ The development of the finished app followed iterative 'agile'-type process. Alt
 
 A simple [Kanban](https://en.wikipedia.org/wiki/Kanban)-style board was created to track units of work in progress in various categories (e.g. 'In progress', 'Ready', 'Up next') and ensure that nothing was missed. This was implemented using the [Trello](https://trello.com) card management tool.
 
-`git` was used as a VCS (Version Control System). Even though only a single developer was working on the project at any one time, this made it possible to easily step back to previous versions to help fix bugs, and to view a history of development progress. The repository was also pushed to GitHub as a backup and can be browsed online at <https://github.com/jamesdonoh/halfpricesushi-android>.
+`git` was used as a VCS (Version Control System). Even though only a single developer was working on the project at any one time, this made it possible to easily step back to previous versions to help fix bugs, and to view a history of development progress. The repository was also pushed to GitHub as a backup and can be browsed online at <https://github.com/jamesdonoh/HalfPrice Sushi-android>.
 
 ## Multi-device support
 
 The dual-pane tablet mode described above can be implemented on Android by providing different XML layout files and then using 'configuration qualifiers' to determine when those layouts should be applied. In earlier versions the recommendation was to use the generalised screen sizes (such as `large`, `xlarge`) to select layouts; this has been deprecated since Android 3.2 in favour of using `dp` (density-independent pixel) sizes [@androidscreens].
 
-In the case of _halfpricesushi_, I have decided to use the dual-pane mode on devices where the available screen width is over 600dp (the typical width of a 7" tablet). This is implemented by providing two XML layout files for `OutletListFragment`:
+In the case of _HalfPrice Sushi_, I have decided to use the dual-pane mode on devices where the available screen width is over 600dp (the typical width of a 7" tablet). This is implemented by providing two XML layout files for `OutletListFragment`:
 
     res/layout/fragment_outlet_list.xml           # For handsets
     res/layout-w600dp/fragment_outlet_list.xml    # For tablets
