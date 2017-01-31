@@ -1,16 +1,13 @@
 ---
-title: Mobile Applications - Project Report
-author: James Donohue
-abstract: A case study for the development of a mobile application to serve the fast food retail sector is analysed.
+title: Mobile Application Development - Project Report
+author: James Donohue - <james.donohue@bbc.co.uk>
 ---
 
-# Introduction
-
-This is my report for the Mobile Applications MSc. There are a number of Android design principles [@androiddesign] we should follow.
-
-As the mobile application ('app') sector continues to grow (ref?), vendors are looking for new features and approaches that will help them stick out in a crowded marketplace. This case study will focus on one business sector, fast food, and identify some requirements for a new mobile application, with reference to business trends and existing applications.
+> Note: this is my report for the Mobile Application Development module. It is accompanied by a folder which contains the prototype (`prototype/`) produced during the project as well as the source code of the app (`src/`). For details on building and using the app, please see the section on *Build process* below.
 
 # Case study
+
+As the mobile application ('app') sector continues to grow vendors are looking for new features and approaches that will help them stick out in a crowded marketplace. This case study will focus on one business sector, fast food, and identify some requirements for a new mobile application, with reference to business trends and existing applications.
 
 ## Background
 
@@ -224,6 +221,14 @@ The `Activity` and `Fragment` classes used within the app act as controllers, wi
 
 # Development
 
+## Tools and methodology
+
+The development of the finished app followed iterative 'agile'-type process. Although it would have been possible to implement each section of the application as a separate mini-project with its own schedule and goals, I worked on all areas of functionality at once incrementally, attempting to ensure the app was in a working state at all times and could be demonstrated if required.
+
+A simple [Kanban](https://en.wikipedia.org/wiki/Kanban)-style board was created to track units of work in progress in various categories (e.g. 'In progress', 'Ready', 'Up next') and ensure that nothing was missed. This was implemented using the [Trello](https://trello.com) card management tool.
+
+`git` was used as a VCS (Version Control System). Even though only a single developer was working on the project at any one time, this made it possible to easily step back to previous versions to help fix bugs, and to view a history of development progress. The repository was also pushed to GitHub as a backup and can be browsed online at <https://github.com/jamesdonoh/halfpricesushi-android>.
+
 ## Multi-device support
 
 The dual-pane tablet mode described above can be implemented on Android by providing different XML layout files and then using 'configuration qualifiers' to determine when those layouts should be applied. In earlier versions the recommendation was to use the generalised screen sizes (such as `large`, `xlarge`) to select layouts; this has been deprecated since Android 3.2 in favour of using `dp` (density-independent pixel) sizes [@androidscreens].
@@ -238,6 +243,12 @@ An alternate approach would be to determine the screen size at runtime (perhaps 
 Note that some code to explicitly detect dual-pane mode is included.
 
 # Testing
+
+## Build process
+
+To build the app, open the `src/` folder in Android Studio 2.x, click *Run > Run 'app'* and select a suitable connected device or emulator. This will build the app and install it on the emulator or device.
+
+## Types of testing
 
 During and after development it is essential to incorporate testing using a variety of approaches. This project includes different types of testing:
 
