@@ -166,9 +166,9 @@ Developing a mobile application on Android application can be time-consuming and
 
 Using the functional requirements described above, prototypes were created using the Justinmind software. This provides a convenient set of user interface components (e.g. widgets) that replicates the user experience of the Android platform. The advantage of this over using simple wireframes or paper prototypes is that it will more closely reflects the look and feel of the eventual product.
 
-### Viewing the prototypes
+### Viewing the prototype
 
-The `prototype/` folder contains two subfolders, `sushi-phone/` and `sushi-tablet/` for each device type. These can be run by opening the `index.html` file in each folder. On Chrome you may receive a warning about needing to install an extension, if so please follow the instructions given.
+The `prototype/` folder contains a file `index.html` which can be opened to view the prototype. On Chrome you may receive a warning about needing to install an extension, if so please follow the instructions given.
 
 ### Designing the user interface
 
@@ -182,7 +182,9 @@ We can assume that the primary use of the app will be by mobile users, since it 
 
 For larger screen widths, such as a tablet in landscape orientation, a different screen layout should be offered in order to make more efficient used of the increased available space. This approach is endorsed by the Android Best Practices, which state that "the objective of supporting multiple screens is to create an application that can function properly and look good on any of the generalized screen configurations supported by Android." [@androidscreens].
 
-For this app a dual-pane screen layout will be available to tablet users in landscape mode, replacing the separate list and detail views with a combined dual-pane mode. The advantage of this mode is that it makes it easier to flick between several offers and makes better use of screen real estate.
+![Dual-pane mode for tablet\label{dualpane}](tablet-dualpane.png)
+
+For this app a dual-pane screen layout (Figure \ref{dualpane}) will be created for tablet users in landscape mode, replacing the separate list and detail views with a combined dual-pane mode. The advantage of this mode is that it makes it easier to flick between several offers and makes better use of screen real estate.
 
 ### Splash screen
 
@@ -256,6 +258,22 @@ In the case of _HalfPrice Sushi_, I have decided to use the dual-pane mode on de
 An alternate approach would be to determine the screen size at runtime (perhaps using `Display#getMetrics`) and switch the layout programatically. The advantage of using configuration qualifiers is that the platform takes care of the switching without the need to write any code. It also allows for better support within IDEs.
 
 Note that some code to explicitly detect dual-pane mode is included.
+
+## Location services
+
+In order for location services to function on the Android platform specific permissions are required. These must be declared in the `AndroidManifest.xml` file, e.g.:
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+Also, since Android API level 23, users grant permissions to apps at runtime rather than when the app is installed. This requires an additional check in `OutletFinderActivity`:
+
+    if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
+        android.Manifest.permission.ACCESS_FINE_LOCATION)
+            == PackageManager.PERMISSION_GRANTED) {
+                ...
+            }
+
+In the event that permissions have not been granted, on Android 23+ a dialog is then displayed prompting the user to accept, as show in figure \ref{allowlocation}.
 
 ## Code manageability
 

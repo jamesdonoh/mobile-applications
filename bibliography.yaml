@@ -3,7 +3,7 @@ references:
 - id: androiddesign
   title: Android Design Principles
   author:
-  - literal: Google?
+  - literal: Google
   type: webpage
   URL: https://developer.android.com/design/get-started/principles.html
   issued: 2016
