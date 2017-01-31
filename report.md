@@ -35,16 +35,6 @@ Despite this focus on a type of offer, the application should be designed and im
 
 The target app technology platform will be Android, which continues to enjoy market dominance, accounting for over 80% of new smartphone shipments [@meeker2016]. This therefore offers the largest potential user base to evaluate and enjoy the app's features.
 
-## Domain research
-
-### Just Eat
-
-The first screen that the user sees when running the Just Eat app prompts them to enter their postcode:
-
-![Just Eat: postcode input screen](justeat-postcode.png){ width=50% }
-
-As an alternative to entering a postcode manually, tapping the crosshair symbol to the right-hand side of the input box activates the device's geolocation feature to be used instead. This symbol is consistent with its use elsewhere on the Android platform, however research suggests that truly universal icons are rare and should therefore be accompanied by a text label to eliminate ambiguity [@harley].
-
 ## Requirements
 
 Before work can begin on designing the user interface for the app we need to explore how the system is going to work systematically. This process of requirements gathering should consider both _functional_ and _non-functional_ requirements. The division between these two classes of requirements will be discussed below.
@@ -61,24 +51,19 @@ These requirements describe only a minimum viable product (MVP), in other words 
 
 ### Functional
 
-Functional requirements define things that the product must do in order to be useful to the person using it [@robertson2012]. For example, a weather application needs to be able to give information about the weather forecast for the next few days. Below is a table summarising the functional requirements that have been identified for this case study.
-
-Identifier Description                                                Priority
----------- ---------------------------------------------------------- --------
-      FR01 Show offers based on the user's physical location             Must
-      FR02 Show offers based on remaining duration                       Must
-      FR03 Display detailed information about each offer and location    Must
-      FR04 Allow user to specify location manually                     Should
-
-Table:  Summary of functional requirements
-
-These requirements are explained and justified in detail in the following sections.
+Functional requirements define things that the product must do in order to be useful to the person using it [@robertson2012]. For example, a weather application needs to be able to give information about the weather forecast for the next few days. Below are the functional requirements that have been identified for this case study.
 
 #### FR01: List offers based on proximity to the user's location, if known
 
 As GPS receivers have become a standard feature on smartphones, users now expect mobile apps containing location-specific information to give them the option of sharing their position automatically via the phone's geolocation facility. Avoiding having to manually select a location is an example of 'adaptive user experience' and can be an important way of saving the user time and giving them a seamless experience [@wimberley].
 
 It should be noted that not all smartphone owners are comfortable with using geolocation features, sometimes because of doubts over how information about their location might be used by app developers. A recent survey [@punchtab] showed that 50% of mobile users were reluctant to share their location due to privacy concerns. However, the same survey showed that the biggest reason given (88%) for users to allow location tracking was the availability of "coupons or special offers". This suggests that users will be prepared to allow _HalfPrice Sushi_ to access their location because it will provide them with such offers. However the app should be designed so that it is still usable even without access to location services.
+
+For example, the first screen that the user sees when running the Just Eat app prompts them to enter their postcode:
+
+![Just Eat: postcode input screen](justeat-postcode.png){ width=50% }
+
+As an alternative to entering a postcode manually, tapping the crosshair symbol to the right-hand side of the input box activates the device's geolocation feature to be used instead. This symbol is consistent with its use elsewhere on the Android platform, however research suggests that truly universal icons are rare and should therefore be accompanied by a text label to eliminate ambiguity [@harley].
 
 #### FR02: List offers based on start and finish time
 
@@ -136,17 +121,13 @@ Non-functional requirements are other qualities that the product must have in or
 
 The app should be able to handle a large database of offers to allow it to continue to be work effectively even many additional partners are signed up. The initial offer database is expected to contain less than 100 offers, however the behaviour of the app with up to 1000 offers should not be noticeably impaired in any way.
 
-#### NFR02: Respond to all user interactions within 100ms
-
-#### NFR03: Localisation support
+#### NFR02: Localisation support
 
 As the app may be launched in future in other countries, it is essential that it can be easily translated into other languages. For this reason all strings and graphical text used within the app should be stored using localised resources instead of being hard-coded. The default language may be assumed to be English. No special support for right-to-left text or layouts is required for the MVP app.
 
-#### NFR04: Accessibility
+#### NFR03: Ensure privacy of user data
 
-?
-
-#### NFR05: Standards? Privacy etc?
+It is important that users trust app makers to use powerful features such as location services responsibly. For this reason it is a requirement of the product that no personally-identifiable user data is shared with the app's servers, such as details of the user's mobile or their location. This will also ensure that the app also complies with local privacy laws.
 
 # Design and prototyping
 
@@ -255,9 +236,9 @@ In the case of _HalfPrice Sushi_, I have decided to use the dual-pane mode on de
     res/layout/fragment_outlet_list.xml           # For handsets
     res/layout-w600dp/fragment_outlet_list.xml    # For tablets
 
-An alternate approach would be to determine the screen size at runtime (perhaps using `Display#getMetrics`) and switch the layout programmatically. The advantage of using configuration qualifiers is that the platform takes care of the switching without the need to write any code. It also allows for better support within IDEs.
+An alternate approach would be to determine the screen size at runtime (perhaps using `Display#getMetrics`) and switch the layout programmatically. The advantage of using configuration qualifiers is that the platform takes care of the switching without the need to write any code. It also allows for better support within IDEs. An overview of how this is implemented using `Activity` and `Fragment` classes can be seen in Figure \ref{rotation}.
 
-Note that some code to explicitly detect dual-pane mode is included.
+![Activities and fragments for dual-pane mode\label{rotation}](rotation.png)
 
 ## Location services
 
@@ -405,6 +386,8 @@ Result
 
 Although simple, the finished MVP app demonstrates most of the functionally described in the requirements and would be a suitable basis for publishing in order to gather learning about user behaviour and to inform the next iteration of development.
 
-One architectural aspect which could be improved is the approach to persisting local changes to data made by the application. At present, when the user adds a rating to an offer, the `OutletCache` class has to separately update the local database (via `OutletDatabaseHelper`) and the remote API (via `OutletApi`. A cleaner design would be to implement the database helper more like a write-through cache, so that only a single call is required which implicitly persists the rating in both places. This could be a requirement of a future iteration of the product.
+One clear architectural aspect which could be improved is the approach to persisting local changes to data made by the application. At present, when the user adds a rating to an offer, the `OutletCache` class has to separately update the local database (via `OutletDatabaseHelper`) and the remote API (via `OutletApi`. A cleaner design would be to implement the database helper more like a write-through cache, so that only a single call is required which implicitly persists the rating in both places. This could be a requirement of a future iteration of the product.
+
+It may also be beneficial to provide a 'tutorial' overlay when the app first loads to illustrate the range of features available to the user and acclimatise them to the user interface. Additionally, further investigation should be done in improving the user interface for different device types, optimising the tablet layout and even exploring the possibility of using other devices such as Android Wear watches.
 
 # References
