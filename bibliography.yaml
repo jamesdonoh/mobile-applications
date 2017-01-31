@@ -403,4 +403,31 @@ references:
   publisher: Dorling Kindersley
   publisher-place: Delhi, India
   issued: 2005
+- id: idc
+  title: 'Smartphone OS Market Share, 2016 Q3'
+  author:
+  - literal: IDC
+  type: webpage
+  URL: http://www.idc.com/promo/smartphone-market-share/os
+  issued: 2017
+  accessed:
+    date-parts:
+    - - 2017
+      - 01
+      - 30
+- id: robbins
+  title: Plotting Likert and Other Rating Scales
+  author:
+  - family: Robbins
+    given: Naomi B.
+  - family: Heiberger
+    given: Richard M.
+  type: webpage
+  URL: http://www.montana.edu/msse/Data_analysis/Likert%20Survey%20Graphs.pdf
+  issued: 2011
+  accessed:
+    date-parts:
+    - - 2017
+      - 01
+      - 30
 ...

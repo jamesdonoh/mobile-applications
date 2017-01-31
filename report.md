@@ -148,36 +148,39 @@ As the app may be launched in future in other countries, it is essential that it
 
 #### NFR05: Standards? Privacy etc?
 
-# Design and prototype
+# Design and prototyping
 
 ## Platform strategy
 
-The functional and non-functional requirements described above could be provided in a variety of ways, including a mobile (HTML5) website or an iOS app. It is essential that any new mobile project includes a cross-platform strategy, which specifies the platforms which will be catered for in order to maximise business benefit.
+The functional and non-functional requirements described above could be provided in a variety of ways, including a mobile website or an iOS app. It is essential that any new mobile project includes a cross-platform strategy, which specifies the platforms which will be catered for in order to maximise business benefit.
 
+One goal for this project was to create an app that was usable by as many people as possible. With 86.8% smartphone OS market share [@idc], Android was the obvious choice to achieve this. I set a target of 95% of Android mobile users. Based on this target, I decided to target Android versions 4.1 (Jelly Bean) and above, also known as API level 16, which has a cumulative distribution of 95.2%, as shown in Figure \ref{jellybean}.
 
+![Android 4.1 (Jelly Bean) statistics from Android Studio\label{jellybean}](jellybean.png)
 
+A mobile website was also considered but rejected on the grounds that for maximum usefulness it would require access to the device's GPS functionality, which can currently be more easily achieved using a native app. Native apps also offer the possibility of future monetisation through adding premium features.
 
-## Prototype
+## Prototypes
 
-Developing a mobile application on Android application can be time-consuming and therefore costly for organisations. The purpose of creating a prototype is to plan the user interface for the application without ...
+Developing a mobile application on Android application can be time-consuming and therefore costly for organisations. The purpose of creating a prototype is to plan the user interface for the application without making a significant development investment. It allows business owners to give feedback on the designs at a stage where they can easily be changed, and also allows some types of usability testing to validate the interface.
 
-## How to view the prototypes
+Using the functional requirements described above, prototypes were created using the Justinmind software. This provides a convenient set of user interface components (e.g. widgets) that replicates the user experience of the Android platform. The advantage of this over using simple wireframes or paper prototypes is that it will more closely reflects the look and feel of the eventual product.
+
+### Viewing the prototypes
 
 The `prototype/` folder contains two subfolders, `sushi-phone/` and `sushi-tablet/` for each device type. These can be run by opening the `index.html` file in each folder. On Chrome you may receive a warning about needing to install an extension, if so please follow the instructions given.
 
-## Designing the user interface
+### Designing the user interface
 
-Although as Nielsen [-@nielsen1996] points out, 'Designers Are Not Users', and we should be wary of using our intuition alone in making design decision, for the purposes of creating an MVP for this project I have used my own desires and expectations as a guide in organising the user interface.
+Although as Nielsen [-@nielsen1996] points out, 'Designers Are Not Users', and we should be wary of using our intuition alone in making design decision, for the purposes of creating an MVP for this project I used my own wishes and expectations as a guide in organising the user interface. In a larger-scale project I would have conducted interviews with stakeholders and potential users during the process of designing the interface.
 
-...
+In addition, it is important to keep referring to the requirements gathered at the initial stage in order to ensure traceability and check that the app is meeting all of them.
 
 ### Multi-device support
 
 We can assume that the primary use of the app will be by mobile users, since it provides functionality in the 'eating out' scenario where it can be assumed that users are less likely to be at home and have access to larger devices. Nonetheless, some users do carry tablets with them and many newer tablets include GPS receivers which would allow the user's location to be identified similarly to a mobile.
 
 For larger screen widths, such as a tablet in landscape orientation, a different screen layout should be offered in order to make more efficient used of the increased available space. This approach is endorsed by the Android Best Practices, which state that "the objective of supporting multiple screens is to create an application that can function properly and look good on any of the generalized screen configurations supported by Android." [@androidscreens].
-
-(diagram?)
 
 For this app a dual-pane screen layout will be available to tablet users in landscape mode, replacing the separate list and detail views with a combined dual-pane mode. The advantage of this mode is that it makes it easier to flick between several offers and makes better use of screen real estate.
 
@@ -188,8 +191,6 @@ The functional requirements for the app (ref?) include the need to load new offe
 Nielsen [-@nielsen2013] describes splash screens as a 'user experience sin' that has been reintroduced in the mobile app era. However, the specification for Material Design [@material], the recommended Android design language, argues in favour of 'launch screens' on the grounds that they increase perceived loading time. They also provide an opportunity to display the app logo and "improve brand recognition". Notably, it recommends that the launch screen should only be shown for the initial 'cold' launch from the home screen.
 
 # Architecture
-
-
 
 ## Model View Controller
 
@@ -256,6 +257,8 @@ An alternate approach would be to determine the screen size at runtime (perhaps 
 
 Note that some code to explicitly detect dual-pane mode is included.
 
+## Code manageability
+
 # Testing
 
 ## Build process
@@ -320,13 +323,21 @@ Several measures exist for making subjective assessments of usability, usually t
 
 The System Usability Scale (SUS) created by Digital Equipment Corporation is one such measure [@brooke]. It is implemented using a Likert scale in which the respondent indicates their level of agreement or disagreement with statements such as _I found the system unnecessarily complex_. The SUS has only ten questions and can therefore be completed quickly and easily.
 
-### Informal feedback
+### User feedback
 
-A number of useful insights were obtained from observing users interacting with the app and describing their own actions, and from asking their opinions at the end of the tasks. These insights were recorded and used in order to make improvements to the user interface.
+A number of useful insights were obtained from observing users interacting with the app and describing their own actions, and from asking their opinions at the end of the tasks. These insights were recorded and used in order to make improvements to the user interface. They included:
+
+- One user identified that the 'sort' button's purpose was not clear. It was not obvious from the design how the offers are sorted when the app first loads, or how this changes when the sort button is clicked. One way of addressing this might be to use a drop-down menu in the App Bar containing 'Sort by Time' and 'Sort by Location' options.
 
 ### Quantitative data
 
-The results of the SUS surveys were collated and used to produce a ...
+The results of the SUS surveys were collected and used to generate a diverging stacked bar chart for analysis, show in Figure \ref{sus}. This is a recommended technique for visualising Likert scales [@robbins].
+
+![Stacked bar chart illustrating SUS results\label{sus}](sus-barchart.png)
+
+From this data we can see that users had a generally positive reaction to the usability of the system. Most users tended to disagree with negative statements such as _I found the system very cumbersome_ and to agree more strongly with positive ones such as _I felt very confident_. It is interesting to note that two statements, _I thought there was too much inconsistency_ and _I found the various functions in this system were well integrated_ did not receive either strong agreement or disagreement. One possible explanation for this is that participants may not have understood the somewhat specialist language used by the SUS in these statements.
+
+One obvious limitation of these results is the relatively small sample size used. Nielsen [-@nielsen2012] recommends surveying 20 respondents when making quantitative studies. The survey could be repeated with a larger sample size to improve the quality of the results.
 
 ## Functional testing
 
@@ -371,5 +382,11 @@ Pass criteria
 
 Result
 :    Pass
+
+# Evaluation and conclusions
+
+Although simple, the finished MVP app demonstrates most of the functionally described in the requirements and would be a suitable basis for publishing in order to gather learning about user behaviour and to inform the next iteration of development.
+
+One architectural aspect which could be improved is the approach to persisting local changes to data made by the application. At present, when the user adds a rating to an offer, the `OutletCache` class has to separately update the local database (via `OutletDatabaseHelper`) and the remote API (via `OutletApi`. A cleaner design would be to implement the database helper more like a write-through cache, so that only a single call is required which implicitly persists the rating in both places. This could be a requirement of a future iteration of the product.
 
 # References
