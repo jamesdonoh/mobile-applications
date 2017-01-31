@@ -15,7 +15,7 @@ A recent report by the Department for Environment, Food & Rural Affairs [@defra2
 
 Fast food outlets, also known as quick service restaurants or QSRs [@farrell], are big business globally. More recently the trend towards 'fast-casual' restaurants, without table service but with a better quality of food than traditional fast food outlets, has begun to spread outside the US and is expected to have a significant impact on the UK market [@henkes].
 
-A recent study by the Waste and Resources Action Programme [@wrap] showed that QSRs account for 25% of all meals eaten out in the UK and produce 76,000 tonnes of food waste per year, costing the sector £277m. Of this amount, 21% was ascribed to 'spoilage'. Given the need to feed an growing world population, there are therefore both commercial and moral arguments for reducing the amount of wasted food.
+A recent study by the Waste and Resources Action Programme [@wrap] showed that QSRs account for 25% of all meals eaten out in the UK and produce 76,000 tonnes of food waste per year, costing the sector £277m. Of this amount, 21% was ascribed to 'spoilage'. Given the need to feed a growing world population, there are therefore both commercial and moral arguments for reducing the amount of wasted food.
 
 In the past few years there has been an explosion of apps and websites offering home meal delivery, either by takeaways themselves (via apps such as Just Eat and Hungryhouse) or more recently by 'last mile' [@ft2016] delivery companies with their own network of couriers (Deliveroo and Uber Eats). These apps have been enormously popular: Uber reported that over 100,000 people downloaded the Uber Eats app in the first few days of its launch [@ft2016]. It is clear that apps are becoming an important way that users search for and source their meals.
 
@@ -90,7 +90,7 @@ Users may wish to sort the list of offers either by distance or by time remainin
 
 #### FR04: Display a detailed view of each offer and location
 
-Once the user has identified an offer that they are interested in, they should be able to tap or click on it to see a more detailed view. The detailed view should provide all information that the app holds about the offer, along with any applicable time restritions (such as opening hours). The detailed view should also give an indication of the location where the offer can be redeemed, such as through a simplified (non-interactive) small map.
+Once the user has identified an offer that they are interested in, they should be able to tap or click on it to see a more detailed view. The detailed view should provide all information that the app holds about the offer, along with any applicable time restrictions (such as opening hours). The detailed view should also give an indication of the location where the offer can be redeemed, such as through a simplified (non-interactive) small map.
 
 #### FR05: Provide map-based view of all offers in the surrounding area
 
@@ -100,7 +100,7 @@ Instead of viewing a list of offers based on proximity, users may prefer to see 
 
 Users are accustomed to map views offering a 'My Location'-type feature which indicates their current position in relation to places of interest around them, often using a blue dot. This type of feature should also be incorporated into the map view for consistency with other apps such as Google Maps itself.
 
-#### FR07: Indicate which offers currently avaible using graphics
+#### FR07: Indicate which offers currently available using graphics
 
 Following the Android Design Principle that _pictures are faster than words_ [@androiddesign], the user interface should use graphics and other visual effects (such as highlight colours) to identify the status of each offer. An example of this would be to use a different icon to represent an offer that is currently available on list and map views, rather than a simple piece of text. However, if icons are used, care should be taken to ensure that they are easily understood by the majority of users (ref Hamburger icon article) and do not create confusion.
 
@@ -112,17 +112,17 @@ If problems occur when initialising the database from the web API, the app shoul
 
 #### FR09: Update offer database automatically using API without requiring app update
 
-Users should be able to take advantage of udpated offer information without having to upgrade or reinstall the app itself. The app should periodically check the API in order to update its local database of offers. However the update process, and in particular any network errors that occur, should not interfere with the normal operation of the app (again, as per _it's not my fault_).
+Users should be able to take advantage of updated offer information without having to upgrade or reinstall the app itself. The app should periodically check the API in order to update its local database of offers. However the update process, and in particular any network errors that occur, should not interfere with the normal operation of the app (again, as per _it's not my fault_).
 
 #### FR10: Support adding users' personal ratings for each offer
 
-The Android Design Principle _let me make it mine_ [@androiddesign] states that users like to add personal touches and 'optional customisations'. This principle is met by allowing users to assign a 'star rating' on the detailed offer view. The star rating they give each offer should be stored by the app and redisplayed on subequent uses of the detailed view, also following the principle of _never lose my stuff_.
+The Android Design Principle _let me make it mine_ [@androiddesign] states that users like to add personal touches and 'optional customisations'. This principle is met by allowing users to assign a 'star rating' on the detailed offer view. The star rating they give each offer should be stored by the app and redisplayed on subsequent uses of the detailed view, also following the principle of _never lose my stuff_.
 
 #### FR11: Upload anonymised user ratings to central database
 
 When a user has added a personal rating for an offer, as well as storing the rating internally the app should attempt to submit the rating to a central database (including the offer identifier, rating and date and time when the rating was set). At this stage no personally identifiable data (such as location) should be sent to the server to avoid infringing the user's privacy. A server using a REST API will be made available to receive ratings sent by the app.
 
-The rationale behind this requirement is to build up a central database of ratings that could be used to provide additional features in future based on which offers have the highest (or lowest) user rating. For example, a shop with a large selection of reduced items could be highlighed by the app for special consideration by the user.
+The rationale behind this requirement is to build up a central database of ratings that could be used to provide additional features in future based on which offers have the highest (or lowest) user rating. For example, a shop with a large selection of reduced items could be highlighted by the app for special consideration by the user.
 
 #### FR12: Use simple sound effects to respond to user actions
 
@@ -134,7 +134,7 @@ Non-functional requirements are other qualities that the product must have in or
 
 #### NFR01: Support up to 1000 offers at one time without impaired function
 
-The app should be able to handle a large database of offers to allow it to continue to be work effectively even many additional partners are signed up. The initial offer database is expeced to contain less than 100 offers, however the behaviour of the app with up to 1000 offers should not be noticeably impaired in any way.
+The app should be able to handle a large database of offers to allow it to continue to be work effectively even many additional partners are signed up. The initial offer database is expected to contain less than 100 offers, however the behaviour of the app with up to 1000 offers should not be noticeably impaired in any way.
 
 #### NFR02: Respond to all user interactions within 100ms
 
@@ -198,13 +198,13 @@ Nielsen [-@nielsen2013] describes splash screens as a 'user experience sin' that
 
 Model View Controller (MVC) is a well-established pattern in application architecture for creating a separation of concerns between user interface and business logic and/or domain model.
 
-According to Fowler [@fowler] the separation of presentation from model is of fundamental importance in software architecture. It allows code that describes business logic and provdes access to data (for example via databases or APIs) to be developed and tested separately, independently of the user interface, and enables the possibility of reusing the same model code with different interfaces (such as a website and the command-line). It also allows for greater specialisation of development skills within different areas, and simplification of the development process.
+According to Fowler [@fowler] the separation of presentation from model is of fundamental importance in software architecture. It allows code that describes business logic and provides access to data (for example via databases or APIs) to be developed and tested separately, independently of the user interface, and enables the possibility of reusing the same model code with different interfaces (such as a website and the command-line). It also allows for greater specialisation of development skills within different areas, and simplification of the development process.
 
 The MVC pattern originated in experiments in graphical interfaces conducted at Xerox PARC the late 1970s and was originally implemented for the Smalltalk language. As originally conceived, the model is an abstract representation of some type of knowledge, while the view or views are representations of that model that the user can interact with, while creating the impression they are seeing and manipulating the model directly [@reenskaug].
 
-The exact role of the controller has been interpreted differently by authors. Fowler says that the controller takes user input, manipulates the model and causes the view(s) to update [@fowler]. However, Reenskaug's proposal was that views handle their own user input, with the controller only responsible for coordinating views and handling level at the input of the whole application [@reenskaug]. It is worth noting that Fowler believes the precise separation between view and controller (V/C) is less important than the separation between model and presentaion (M/VC).
+The exact role of the controller has been interpreted differently by authors. Fowler says that the controller takes user input, manipulates the model and causes the view(s) to update [@fowler]. However, Reenskaug's proposal was that views handle their own user input, with the controller only responsible for coordinating views and handling level at the input of the whole application [@reenskaug]. It is worth noting that Fowler believes the precise separation between view and controller (V/C) is less important than the separation between model and presentation (M/VC).
 
-As with other layered architectures, the potential benefits of MVC are that it helps to manage the complexity of a large application, allowing new developers to understand the codebase and find where a particular piece of functionality is implemented. This may lead to a reduction in maintainance costs. As a form of modularisation, it also facilitating reuse of code, and enables the implementation of different parts of the application to be changed by reducing the amount of coupling between classes.
+As with other layered architectures, the potential benefits of MVC are that it helps to manage the complexity of a large application, allowing new developers to understand the codebase and find where a particular piece of functionality is implemented. This may lead to a reduction in maintenance costs. As a form of modularisation, it also facilitating reuse of code, and enables the implementation of different parts of the application to be changed by reducing the amount of coupling between classes.
 
 ## MVC and the Android platform
 
@@ -255,7 +255,7 @@ In the case of _HalfPrice Sushi_, I have decided to use the dual-pane mode on de
     res/layout/fragment_outlet_list.xml           # For handsets
     res/layout-w600dp/fragment_outlet_list.xml    # For tablets
 
-An alternate approach would be to determine the screen size at runtime (perhaps using `Display#getMetrics`) and switch the layout programatically. The advantage of using configuration qualifiers is that the platform takes care of the switching without the need to write any code. It also allows for better support within IDEs.
+An alternate approach would be to determine the screen size at runtime (perhaps using `Display#getMetrics`) and switch the layout programmatically. The advantage of using configuration qualifiers is that the platform takes care of the switching without the need to write any code. It also allows for better support within IDEs.
 
 Note that some code to explicitly detect dual-pane mode is included.
 
@@ -361,7 +361,7 @@ One obvious limitation of these results is the relatively small sample size used
 
 Functional testing is a form of software testing that verifies whether the system meets the original functional requirements that led to its creation. It essentially focuses on whether the software does what it is supposed to do, viewing it as a 'black box', without any knowledge of how the system has been implemented [@desikan]. In this sense it reflects the point of view of a user of the system.
 
-One way of conducting functional testing this is to producte a set of test cases using from the requirements described at the start of the development process, by writing a list of simple steps that can be followed to check each requirement against the expected behaviour. Alternate flows and error scenarios should also be considered. These steps can then be checked manually by a test engineer and the results recorded. Each test case should include a reference to the original requirement that produced it, in order to ensure traceability and make it possible to verify of the level of test coverage of each requirement.
+One way of conducting functional testing this is to produce a set of test cases using from the requirements described at the start of the development process, by writing a list of simple steps that can be followed to check each requirement against the expected behaviour. Alternate flows and error scenarios should also be considered. These steps can then be checked manually by a test engineer and the results recorded. Each test case should include a reference to the original requirement that produced it, in order to ensure traceability and make it possible to verify of the level of test coverage of each requirement.
 
 The following functional test scenario demonstrates this approach:
 
