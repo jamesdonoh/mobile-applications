@@ -148,8 +148,22 @@ As the app may be launched in future in other countries, it is essential that it
 
 #### NFR05: Standards? Privacy etc?
 
-# Prototype
+# Design and prototype
 
+## Platform strategy
+
+The functional and non-functional requirements described above could be provided in a variety of ways, including a mobile (HTML5) website or an iOS app. It is essential that any new mobile project includes a cross-platform strategy, which specifies the platforms which will be catered for in order to maximise business benefit.
+
+
+
+
+## Prototype
+
+Developing a mobile application on Android application can be time-consuming and therefore costly for organisations. The purpose of creating a prototype is to plan the user interface for the application without ...
+
+## How to view the prototypes
+
+The `prototype/` folder contains two subfolders, `sushi-phone/` and `sushi-tablet/` for each device type. These can be run by opening the `index.html` file in each folder. On Chrome you may receive a warning about needing to install an extension, if so please follow the instructions given.
 
 ## Designing the user interface
 
