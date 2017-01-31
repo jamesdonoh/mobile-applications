@@ -273,9 +273,9 @@ Also, since Android API level 23, users grant permissions to apps at runtime rat
                 ...
             }
 
-In the event that permissions have not been granted, on Android 23+ a dialog is then displayed prompting the user to accept, as show in figure \ref{allowlocation}.
+In the event that permissions have not been granted, on Android 23+ a dialog is then displayed prompting the user to accept, as shown in figure \ref{allowlocation}.
 
-## Code manageability
+![Prompt for location permissions on newer Android versions\label{allowlocation}](location-permissions.png){ width=50% }
 
 # Testing
 
