@@ -284,10 +284,6 @@ Android Studio subdivides unit tests into 'local unit tests', defined as tests w
 
 The file `OutletTest.java` implements some unit tests for the `Outlet` model class, demonstrating the approach of testing a class without any framework dependencies. An `initialise` method with the `@Before` annotation is used to set up the object under test, after which a series of methods with the `@Test` annotation exercise different methods of the `Outlet` class under different scenarios, such as with or without ratings or opening hours having been set.
 
-### Instrumented tests
-
-Or not?
-
 ## Usability testing
 
 Whether a mobile app is usable can be equally important as whether it is functional. Usability is is defined by ISO 9241-11 as the 
@@ -320,13 +316,15 @@ At the end of the tasks, the user was asked to give any specific feedback about 
 
 Several measures exist for making subjective assessments of usability, usually through questionnaires which users of the system are asked to complete by putting a numeric score against a series of statements or prompts. Although a custom metrics could be created for each research exercise, one advantage of using a ready-made scoring system is that it allows for rough comparison both across versions of a product and between different products  Using an existing scale also reduces some of the costs associated with usability research.
 
-The System Usability Scale (SUS) created by Digital Equipment Corporation is one such measure [@brooke]. It is implemented using a Likert scale in which the respondent indicates their level of agreement or disagreement with statements such as _I found the system unnecessarily complex_. The SUS has only ten questions and can therefore be completed quickly and easily.
+The System Usability Scale (SUS) created by Digital Equipment Corporation is one such measure [@brooke]. It is implemented using a Likert scale in which the respondent indicates their level of agreement or disagreement with statements such as _I found the system unnecessarily complex_. The SUS has only ten questions and can therefore be completed quickly and easily. Users were asked to complete this survey at the end of the usability tests.
 
 ### User feedback
 
 A number of useful insights were obtained from observing users interacting with the app and describing their own actions, and from asking their opinions at the end of the tasks. These insights were recorded and used in order to make improvements to the user interface. They included:
 
 - One user identified that the 'sort' button's purpose was not clear. It was not obvious from the design how the offers are sorted when the app first loads, or how this changes when the sort button is clicked. One way of addressing this might be to use a drop-down menu in the App Bar containing 'Sort by Time' and 'Sort by Location' options.
+
+- Another user pointed out that it was not immediately obvious how to return from the 'detail' view to the 'list' view and had to be shown how to use the Android back button. An improvement would be to include an "up" arrow in the App Bar, which by convention takes users to the last action.
 
 ### Quantitative data
 
